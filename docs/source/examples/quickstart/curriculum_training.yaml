@@ -1,0 +1,23 @@
+defaults:
+  - _aucurriculum_train_
+  - _self_
+
+results_dir: results
+experiment_id: default
+iterations: 5
+
+hydra:
+  sweeper:
+    params:
+      +seed: 1
+      +batch_size: 32
+      +learning_rate: 0.001
+      dataset: ToyTabular-C
+      model: ToyFFNN
+      optimizer: Adam
+      curriculum: Curriculum # sample easiest examples first
+      curriculum/sampling: Balanced # assure class-balance in training subsets
+      curriculum/scoring: CELoss # the trained scoring function
+      curriculum/pacing: Linear, Logarithmic # increase the training dataset size linearly and logarithmically
+      curriculum.pacing.initial_size: 0.2 # use 20% of the training set initially
+      curriculum.pacing.final_iteration: 0.8 # use all data after 80% of training
