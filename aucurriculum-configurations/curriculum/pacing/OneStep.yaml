@@ -1,0 +1,4 @@
+id: OneStep
+_target_: aucurriculum.curricula.pacing.OneStep
+initial_size: ???
+final_iteration: ???

@@ -1,0 +1,7 @@
+id: CELoss
+type: CELoss
+_target_: aucurriculum.curricula.scoring.CELoss
+run_name: ???
+criterion: autrainer.criterions.CrossEntropyLoss
+stop: best # "best" or "last"
+subset: train # train, dev, test

@@ -1,0 +1,9 @@
+id: PredictionDepth
+type: PredictionDepth
+_target_: aucurriculum.curricula.scoring.PredictionDepth
+run_name: ???
+probe_placements: ???
+max_embedding_size: 65536
+match_dimensions: true
+stop: best # "best" or "last"
+subset: train # train, dev, test

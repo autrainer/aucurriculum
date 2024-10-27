@@ -1,0 +1,6 @@
+id: TransferTeacher
+type: TransferTeacher
+_target_: aucurriculum.curricula.scoring.TransferTeacher
+model: ???
+dataset: ???
+subset: train # train, dev, test

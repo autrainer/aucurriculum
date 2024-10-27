@@ -1,0 +1,9 @@
+# @package hydra.sweeper
+_target_: hydra_plugins.filter.FilterSweeper
+max_batch_size: null
+filters:
+  - type: exists
+    path: metrics.csv
+  - type: class
+    target: aucurriculum.core.filters.FilterPartialCurriculum
+    log: false

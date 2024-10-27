@@ -1,0 +1,12 @@
+defaults:
+  - _self_
+  - scoring: ???
+  - pacing: ???
+  - sampling: ???
+
+id: AntiCurriculum
+type: AntiCurriculum
+short: A
+
+_results_dir: ${results_dir}
+_experiment_id: ${experiment_id}

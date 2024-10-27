@@ -1,0 +1,8 @@
+id: Predefined
+type: Predefined
+_target_: aucurriculum.curricula.scoring.Predefined
+file: ???
+scores_column: ???
+reverse: ??? # true, false
+dataset: ???
+subset: train # train, dev, test
