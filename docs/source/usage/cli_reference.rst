@@ -9,7 +9,7 @@ CLI Reference
 :ref:`model training <cli_training>`,
 :ref:`inference <cli_inference>`,
 :ref:`postprocessing <cli_postprocessing>`,
-and `curriculum <cli_curriculum>` to obtain sample difficulty scores.
+and :ref:`curriculum <cli_curriculum>` to obtain sample difficulty scores.
 
 In addition to the CLI, `aucurriculum` provides a :ref:`Python CLI wrapper <cli_wrapper>` to manage configurations, data, training, inference,
 postprocessing, and curriculum sample difficulty calculation programmatically with the same functionality as the CLI.

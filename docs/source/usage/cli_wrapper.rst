@@ -9,7 +9,7 @@ CLI Wrapper
 :ref:`model training <cli_wrapper_training>`,
 :ref:`inference <cli_wrapper_inference>`,
 :ref:`postprocessing <cli_wrapper_postprocessing>`,
-and `curriculum <cli_wrapper_curriculum>` to obtain sample difficulty scores.
+and :ref:`curriculum <cli_wrapper_curriculum>` to obtain sample difficulty scores.
 
 Wrapper functions are useful for integrating `aucurriculum` into custom scripts, jupyter notebooks, google colab notebooks, and other applications.
 
