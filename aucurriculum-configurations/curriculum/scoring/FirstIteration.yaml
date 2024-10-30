@@ -1,0 +1,6 @@
+id: FirstIteration
+type: FirstIteration
+_target_: aucurriculum.curricula.scoring.FirstIteration
+run_name: ???
+stop: best # "best" or "last"
+subset: train # train, dev, test

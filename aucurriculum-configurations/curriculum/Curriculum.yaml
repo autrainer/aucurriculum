@@ -1,0 +1,12 @@
+defaults:
+  - _self_
+  - scoring: ???
+  - pacing: ???
+  - sampling: ???
+
+id: Curriculum
+type: Curriculum
+short: C
+
+_results_dir: ${results_dir}
+_experiment_id: ${experiment_id}

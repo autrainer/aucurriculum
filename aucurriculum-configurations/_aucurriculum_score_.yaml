@@ -1,0 +1,15 @@
+defaults:
+  - _self_
+  - curriculum/scoring: ???
+  - plotting: Default
+  - override hydra/sweeper: aucurriculum_score_sweeper
+
+batch_size: 32
+progress_bar: true
+device: cuda:0
+
+hydra:
+  mode: MULTIRUN
+  sweep:
+    dir: ${results_dir}/${experiment_id}/curriculum/
+    subdir: ${curriculum.scoring.type}

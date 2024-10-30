@@ -1,0 +1,7 @@
+id: ProbabilityScore
+type: ProbabilityScore
+_target_: probability_score.ProbabilityScore
+stop: best # "best" or "last"
+subset: train # train, dev, test
+
+run_name: ??? # has to be defined based on a finished run

@@ -1,0 +1,7 @@
+id: CELoss
+type: CELoss
+_target_: aucurriculum.curricula.scoring.CELoss
+run_name: ToyTabular-C_ToyFFNN_Adam_0.001_32_epoch_5_None_None_N_N_None_None_1_0_1
+criterion: autrainer.criterions.CrossEntropyLoss
+stop: best # "best" or "last"
+subset: train # train, dev, test

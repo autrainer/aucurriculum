@@ -1,0 +1,6 @@
+id: CumulativeAccuracy
+type: CumulativeAccuracy
+_target_: aucurriculum.curricula.scoring.CumulativeAccuracy
+run_name: ???
+stop: best # "best" or "last"
+subset: train # train, dev, test

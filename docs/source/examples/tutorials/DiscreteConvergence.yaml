@@ -1,0 +1,8 @@
+id: DiscreteConvergence
+_target_: discrete_convergence.DiscreteConvergence
+initial_size: ???
+final_iteration: ???
+
+patience: 5
+min_improvement: 0.1
+buckets: 10

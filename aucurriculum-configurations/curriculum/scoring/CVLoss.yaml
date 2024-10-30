@@ -1,0 +1,26 @@
+id: CVLoss
+type: CVLoss
+_target_: aucurriculum.curricula.scoring.CVLoss
+splits: 3
+setup:
+  filters: null
+  dataset: ???
+  model: ???
+  optimizer: ???
+  learning_rate: ???
+  scheduler: ???
+  augmentation: ???
+  seed: ???
+  batch_size: ???
+  inference_batch_size: ???
+  plotting: Default
+  training_type: epoch
+  iterations: 5
+  eval_frequency: 1
+  save_frequency: 1
+  save_train_outputs: true
+  save_dev_outputs: true
+  save_test_outputs: true
+criterion: autrainer.criterions.CrossEntropyLoss
+stop: best
+subset: train

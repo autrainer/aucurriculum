@@ -1,0 +1,6 @@
+id: Random
+type: Random
+_target_: aucurriculum.curricula.scoring.Random
+dataset: ???
+seed: 1
+subset: train # train, dev, test
