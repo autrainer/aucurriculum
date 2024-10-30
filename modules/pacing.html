@@ -1,0 +1,803 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Pacing Functions &#8212; aucurriculum — A Curriculum Learning Toolkit for Deep Learning Tasks built on top of autrainer.</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/theme.css?v=93fba4f5" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'modules/pacing';</script>
+    <script src="../_static/external_links.js?v=919ee35f"></script>
+    <script src="../_static/highlight_cli.js?v=d9429fbe"></script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Core" href="core.html" />
+    <link rel="prev" title="Scoring Functions" href="scoring.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo_light.webp" class="logo__image only-light" alt="aucurriculum — A Curriculum Learning Toolkit for Deep Learning Tasks built on top of autrainer."/>
+    <script>document.write(`<img src="../_static/logo_dark.webp" class="logo__image only-dark" alt="aucurriculum — A Curriculum Learning Toolkit for Deep Learning Tasks built on top of autrainer."/>`);</script>
+  
+  
+    <p class="title logo__title">aucurriculum</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/autrainer/aucurriculum" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/autrainer/aucurriculum" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/cli_reference.html">CLI Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/cli_wrapper.html">CLI Wrapper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/hydra_configurations.html">Hydra Configurations</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modules</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="scoring.html">Scoring Functions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Pacing Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core.html">Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postprocessing.html">Postprocessing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../development/reproducibility_guide.html">Reproducibility Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/citing.html">Citing <cite>aucurriculum</cite></a></li>
+</ul>
+</div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Pacing Functions</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="pacing-functions">
+<span id="id1"></span><h1>Pacing Functions<a class="headerlink" href="#pacing-functions" title="Link to this heading">#</a></h1>
+<p>Pacing functions control the introduction of new samples into the curriculum-based training process
+by determining the dataset size at each iteration.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To create custom pacing functions, refer to the <a class="reference internal" href="../usage/tutorials.html#tut-pacing-functions"><span class="std std-ref">custom pacing functions tutorial</span></a>.</p>
+</div>
+<p>Based on the difficulty ordering provided by a <a class="reference internal" href="scoring.html#scoring-functions"><span class="std std-ref">scoring function</span></a>,
+new samples are introduced into the training process in ascending (or descending) order of difficulty.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><cite>aucurriculum</cite> introduces new samples into the training process after all currently available samples
+have been seen by the model at least once (i.e., once the training loader is exhausted).</p>
+<p>While the order of introducing new samples is determined by the scoring function,
+all currently available samples are shuffled before being introduced into the training process.</p>
+</div>
+<section id="curriculum-pace-manager">
+<h2>Curriculum Pace Manager<a class="headerlink" href="#curriculum-pace-manager" title="Link to this heading">#</a></h2>
+<p><a class="reference internal" href="#aucurriculum.curricula.CurriculumPaceManager" title="aucurriculum.curricula.CurriculumPaceManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">CurriculumPaceManager</span></code></a> manages the pacing of the curriculum by dynamically controlling the training loader,
+shuffling the currently available dataset samples, and introducing new samples according to the
+<a class="reference internal" href="../usage/hydra_configurations.html#main-configuration-training"><span class="std std-ref">curriculum training configuration</span></a>.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="aucurriculum.curricula.CurriculumPaceManager">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aucurriculum.curricula.</span></span><span class="sig-name descname"><span class="pre">CurriculumPaceManager</span></span><a class="reference internal" href="../_modules/aucurriculum/curricula/curriculum_pace_manager.html#CurriculumPaceManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.curricula.CurriculumPaceManager" title="Link to this definition">#</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="aucurriculum.curricula.CurriculumPaceManager.shuffle_indices">
+<span class="sig-name descname"><span class="pre">shuffle_indices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/curricula/curriculum_pace_manager.html#CurriculumPaceManager.shuffle_indices"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.curricula.CurriculumPaceManager.shuffle_indices" title="Link to this definition">#</a></dt>
+<dd><p>Shuffle the indices of the dataset based on the current size.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]</span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Shuffled indices of the dataset.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="aucurriculum.curricula.CurriculumPaceManager.train_loader">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">train_loader</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">DataLoader</span></em><a class="headerlink" href="#aucurriculum.curricula.CurriculumPaceManager.train_loader" title="Link to this definition">#</a></dt>
+<dd><p>Create a DataLoader for the training dataset which samples based on
+the current dataset size and difficulty ordering.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The DataLoader for the training dataset.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aucurriculum.curricula.CurriculumPaceManager.cb_on_loader_exhausted">
+<span class="sig-name descname"><span class="pre">cb_on_loader_exhausted</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trainer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iteration</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/curricula/curriculum_pace_manager.html#CurriculumPaceManager.cb_on_loader_exhausted"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.curricula.CurriculumPaceManager.cb_on_loader_exhausted" title="Link to this definition">#</a></dt>
+<dd><p>Callback to update the dataset size and weight after the loader is
+exhausted. The dataset size update is postponed to this point to avoid
+changing the dataset size during an iteration and ensure that each
+available sample is used for training at least once.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>trainer</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModularTaskTrainer</span></code></span>) – The trainer instance.</p></li>
+<li><p><strong>iteration</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Current iteration.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="abstract-pacing-function">
+<h2>Abstract Pacing Function<a class="headerlink" href="#abstract-pacing-function" title="Link to this heading">#</a></h2>
+<p>All pacing functions inherit from the <a class="reference internal" href="#aucurriculum.curricula.pacing.AbstractPace" title="aucurriculum.curricula.pacing.AbstractPace"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractPace</span></code></a> class and implement the
+<a class="reference internal" href="#aucurriculum.curricula.pacing.AbstractPace.get_dataset_size" title="aucurriculum.curricula.pacing.AbstractPace.get_dataset_size"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_dataset_size()</span></code></a> method determining the size of the dataset to be used at a given iteration.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="aucurriculum.curricula.pacing.AbstractPace">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aucurriculum.curricula.pacing.</span></span><span class="sig-name descname"><span class="pre">AbstractPace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">final_iteration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_iterations</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/curricula/pacing/abstract_pace.html#AbstractPace"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.curricula.pacing.AbstractPace" title="Link to this definition">#</a></dt>
+<dd><p>Abstract class for pacing functions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>initial_size</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The initial fraction of the dataset to start training
+with.</p></li>
+<li><p><strong>final_iteration</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The fraction of training iterations at which the
+dataset size will be the full dataset size.</p></li>
+<li><p><strong>total_iterations</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The total number of training iterations.</p></li>
+<li><p><strong>dataset_size</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The size of the dataset.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the initial size is not in (0, 1] or if the final
+    iteration is not in [0, 1].</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="aucurriculum.curricula.pacing.AbstractPace.get_dataset_size">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_dataset_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iteration</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/curricula/pacing/abstract_pace.html#AbstractPace.get_dataset_size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.curricula.pacing.AbstractPace.get_dataset_size" title="Link to this definition">#</a></dt>
+<dd><p>Get the dataset size at a given iteration according to the pacing
+function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>iteration</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The iteration number.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The dataset size at the given iteration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="continuous-pacing-functions">
+<h2>Continuous Pacing Functions<a class="headerlink" href="#continuous-pacing-functions" title="Link to this heading">#</a></h2>
+<p>Continuous pacing functions introduce new samples continuously, adding more samples after each iteration.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="aucurriculum.curricula.pacing.Exponential">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aucurriculum.curricula.pacing.</span></span><span class="sig-name descname"><span class="pre">Exponential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">final_iteration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_iterations</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/curricula/pacing/exponential.html#Exponential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.curricula.pacing.Exponential" title="Link to this definition">#</a></dt>
+<dd><p>Exponential pacing function adapted from:
+<a class="reference external" href="https://arxiv.org/abs/2012.03107">https://arxiv.org/abs/2012.03107</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>initial_size</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The initial fraction of the dataset to start training
+with.</p></li>
+<li><p><strong>final_iteration</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The fraction of training iterations at which the
+dataset size will be the full dataset size.</p></li>
+<li><p><strong>total_iterations</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The total number of training iterations.</p></li>
+<li><p><strong>dataset_size</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The size of the dataset.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the initial size is not in (0, 1] or if the final
+    iteration is not in [0, 1].</p>
+</dd>
+</dl>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Default Configurations</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="literal-block-wrapper docutils container" id="default-exponential">
+<div class='code-block-caption'><span class='caption-text'>conf/curriculum/pacing/Exponential.yaml</span><a class='headerlink' href='#default-exponential' title='Link to this code'>#</a></div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Exponential</span>
+<span class="linenos">2</span><span class="nt">_target_</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aucurriculum.curricula.pacing.Exponential</span>
+<span class="linenos">3</span><span class="nt">initial_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">???</span>
+<span class="linenos">4</span><span class="nt">final_iteration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">???</span>
+</pre></div>
+</div>
+</div></div>
+</details></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="aucurriculum.curricula.pacing.Logarithmic">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aucurriculum.curricula.pacing.</span></span><span class="sig-name descname"><span class="pre">Logarithmic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">final_iteration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_iterations</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/curricula/pacing/logarithmic.html#Logarithmic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.curricula.pacing.Logarithmic" title="Link to this definition">#</a></dt>
+<dd><p>Logarithmic pacing function adapted from:
+<a class="reference external" href="https://arxiv.org/abs/2012.03107">https://arxiv.org/abs/2012.03107</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>initial_size</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The initial fraction of the dataset to start training
+with.</p></li>
+<li><p><strong>final_iteration</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The fraction of training iterations at which the
+dataset size will be the full dataset size.</p></li>
+<li><p><strong>total_iterations</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The total number of training iterations.</p></li>
+<li><p><strong>dataset_size</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The size of the dataset.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the initial size is not in (0, 1] or if the final
+    iteration is not in [0, 1].</p>
+</dd>
+</dl>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Default Configurations</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="literal-block-wrapper docutils container" id="default-logarithmic">
+<div class='code-block-caption'><span class='caption-text'>conf/curriculum/pacing/Logarithmic.yaml</span><a class='headerlink' href='#default-logarithmic' title='Link to this code'>#</a></div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Logarithmic</span>
+<span class="linenos">2</span><span class="nt">_target_</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aucurriculum.curricula.pacing.Logarithmic</span>
+<span class="linenos">3</span><span class="nt">initial_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">???</span>
+<span class="linenos">4</span><span class="nt">final_iteration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">???</span>
+</pre></div>
+</div>
+</div></div>
+</details></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="aucurriculum.curricula.pacing.Linear">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aucurriculum.curricula.pacing.</span></span><span class="sig-name descname"><span class="pre">Linear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">final_iteration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_iterations</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/curricula/pacing/polynomial.html#Linear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.curricula.pacing.Linear" title="Link to this definition">#</a></dt>
+<dd><p>Linear pacing function adapted from:
+<a class="reference external" href="https://arxiv.org/abs/2012.03107">https://arxiv.org/abs/2012.03107</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>initial_size</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The initial fraction of the dataset to start training
+with.</p></li>
+<li><p><strong>final_iteration</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The fraction of training iterations at which the
+dataset size will be the full dataset size.</p></li>
+<li><p><strong>total_iterations</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The total number of training iterations.</p></li>
+<li><p><strong>dataset_size</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The size of the dataset.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the initial size is not in (0, 1] or if the final
+    iteration is not in [0, 1].</p>
+</dd>
+</dl>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Default Configurations</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="literal-block-wrapper docutils container" id="default-linear">
+<div class='code-block-caption'><span class='caption-text'>conf/curriculum/pacing/Linear.yaml</span><a class='headerlink' href='#default-linear' title='Link to this code'>#</a></div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Linear</span>
+<span class="linenos">2</span><span class="nt">_target_</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aucurriculum.curricula.pacing.Linear</span>
+<span class="linenos">3</span><span class="nt">initial_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">???</span>
+<span class="linenos">4</span><span class="nt">final_iteration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">???</span>
+</pre></div>
+</div>
+</div></div>
+</details></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="aucurriculum.curricula.pacing.Quadratic">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aucurriculum.curricula.pacing.</span></span><span class="sig-name descname"><span class="pre">Quadratic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">final_iteration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_iterations</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/curricula/pacing/polynomial.html#Quadratic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.curricula.pacing.Quadratic" title="Link to this definition">#</a></dt>
+<dd><p>Quadratic pacing function adapted from:
+<a class="reference external" href="https://arxiv.org/abs/2012.03107">https://arxiv.org/abs/2012.03107</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>initial_size</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The initial fraction of the dataset to start training
+with.</p></li>
+<li><p><strong>final_iteration</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The fraction of training iterations at which the
+dataset size will be the full dataset size.</p></li>
+<li><p><strong>total_iterations</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The total number of training iterations.</p></li>
+<li><p><strong>dataset_size</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The size of the dataset.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the initial size is not in (0, 1] or if the final
+    iteration is not in [0, 1].</p>
+</dd>
+</dl>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Default Configurations</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="literal-block-wrapper docutils container" id="default-quadratic">
+<div class='code-block-caption'><span class='caption-text'>conf/curriculum/pacing/Quadratic.yaml</span><a class='headerlink' href='#default-quadratic' title='Link to this code'>#</a></div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Quadratic</span>
+<span class="linenos">2</span><span class="nt">_target_</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aucurriculum.curricula.pacing.Quadratic</span>
+<span class="linenos">3</span><span class="nt">initial_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">???</span>
+<span class="linenos">4</span><span class="nt">final_iteration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">???</span>
+</pre></div>
+</div>
+</div></div>
+</details></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="aucurriculum.curricula.pacing.Root">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aucurriculum.curricula.pacing.</span></span><span class="sig-name descname"><span class="pre">Root</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">final_iteration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_iterations</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/curricula/pacing/polynomial.html#Root"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.curricula.pacing.Root" title="Link to this definition">#</a></dt>
+<dd><p>Root pacing function adapted from:
+<a class="reference external" href="https://arxiv.org/abs/2012.03107">https://arxiv.org/abs/2012.03107</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>initial_size</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The initial fraction of the dataset to start training
+with.</p></li>
+<li><p><strong>final_iteration</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The fraction of training iterations at which the
+dataset size will be the full dataset size.</p></li>
+<li><p><strong>total_iterations</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The total number of training iterations.</p></li>
+<li><p><strong>dataset_size</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The size of the dataset.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the initial size is not in (0, 1] or if the final
+    iteration is not in [0, 1].</p>
+</dd>
+</dl>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Default Configurations</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="literal-block-wrapper docutils container" id="default-root">
+<div class='code-block-caption'><span class='caption-text'>conf/curriculum/pacing/Root.yaml</span><a class='headerlink' href='#default-root' title='Link to this code'>#</a></div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Root</span>
+<span class="linenos">2</span><span class="nt">_target_</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aucurriculum.curricula.pacing.Root</span>
+<span class="linenos">3</span><span class="nt">initial_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">???</span>
+<span class="linenos">4</span><span class="nt">final_iteration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">???</span>
+</pre></div>
+</div>
+</div></div>
+</details></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="aucurriculum.curricula.pacing.Polynomial">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aucurriculum.curricula.pacing.</span></span><span class="sig-name descname"><span class="pre">Polynomial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">final_iteration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_iterations</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">degree</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/curricula/pacing/polynomial.html#Polynomial"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.curricula.pacing.Polynomial" title="Link to this definition">#</a></dt>
+<dd><p>Polynomial pacing function adapted from:
+<a class="reference external" href="https://arxiv.org/abs/2012.03107">https://arxiv.org/abs/2012.03107</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>initial_size</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The initial fraction of the dataset to start training
+with.</p></li>
+<li><p><strong>final_iteration</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The fraction of training iterations at which the
+dataset size will be the full dataset size.</p></li>
+<li><p><strong>total_iterations</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The total number of training iterations.</p></li>
+<li><p><strong>dataset_size</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The size of the dataset.</p></li>
+<li><p><strong>degree</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The degree of the polynomial. Defaults to 1.0 (linear).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the initial size is not in (0, 1] or if the final
+    iteration is not in [0, 1].</p>
+</dd>
+</dl>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Default Configurations</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">No default configurations are provided for <a class="reference internal" href="#aucurriculum.curricula.pacing.Polynomial" title="aucurriculum.curricula.pacing.Polynomial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Polynomial</span></code></a>.</p>
+</div>
+</details></dd></dl>
+
+</section>
+<section id="discrete-pacing-functions">
+<h2>Discrete Pacing Functions<a class="headerlink" href="#discrete-pacing-functions" title="Link to this heading">#</a></h2>
+<p>Discrete pacing functions introduce new samples at fixed intervals, such as after a set number of iterations.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="aucurriculum.curricula.pacing.OneStep">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aucurriculum.curricula.pacing.</span></span><span class="sig-name descname"><span class="pre">OneStep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">final_iteration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_iterations</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/curricula/pacing/one_step.html#OneStep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.curricula.pacing.OneStep" title="Link to this definition">#</a></dt>
+<dd><p>(One-)step pacing function adapted from:
+<a class="reference external" href="https://arxiv.org/abs/2012.03107">https://arxiv.org/abs/2012.03107</a></p>
+<p>Note: The formula in the paper is incorrect and has been corrected.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>initial_size</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The initial fraction of the dataset to start training
+with.</p></li>
+<li><p><strong>final_iteration</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The fraction of training iterations at which the
+dataset size will be the full dataset size.</p></li>
+<li><p><strong>total_iterations</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The total number of training iterations.</p></li>
+<li><p><strong>dataset_size</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The size of the dataset.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the initial size is not in (0, 1] or if the final
+    iteration is not in [0, 1].</p>
+</dd>
+</dl>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Default Configurations</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="literal-block-wrapper docutils container" id="default-onestep">
+<div class='code-block-caption'><span class='caption-text'>conf/curriculum/pacing/OneStep.yaml</span><a class='headerlink' href='#default-onestep' title='Link to this code'>#</a></div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OneStep</span>
+<span class="linenos">2</span><span class="nt">_target_</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aucurriculum.curricula.pacing.OneStep</span>
+<span class="linenos">3</span><span class="nt">initial_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">???</span>
+<span class="linenos">4</span><span class="nt">final_iteration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">???</span>
+</pre></div>
+</div>
+</div></div>
+</details></dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curriculum-pace-manager">Curriculum Pace Manager</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.curricula.CurriculumPaceManager"><code class="docutils literal notranslate"><span class="pre">CurriculumPaceManager</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.curricula.CurriculumPaceManager.shuffle_indices"><code class="docutils literal notranslate"><span class="pre">CurriculumPaceManager.shuffle_indices()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.curricula.CurriculumPaceManager.train_loader"><code class="docutils literal notranslate"><span class="pre">CurriculumPaceManager.train_loader</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.curricula.CurriculumPaceManager.cb_on_loader_exhausted"><code class="docutils literal notranslate"><span class="pre">CurriculumPaceManager.cb_on_loader_exhausted()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#abstract-pacing-function">Abstract Pacing Function</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.curricula.pacing.AbstractPace"><code class="docutils literal notranslate"><span class="pre">AbstractPace</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.curricula.pacing.AbstractPace.get_dataset_size"><code class="docutils literal notranslate"><span class="pre">AbstractPace.get_dataset_size()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-pacing-functions">Continuous Pacing Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.curricula.pacing.Exponential"><code class="docutils literal notranslate"><span class="pre">Exponential</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.curricula.pacing.Logarithmic"><code class="docutils literal notranslate"><span class="pre">Logarithmic</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.curricula.pacing.Linear"><code class="docutils literal notranslate"><span class="pre">Linear</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.curricula.pacing.Quadratic"><code class="docutils literal notranslate"><span class="pre">Quadratic</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.curricula.pacing.Root"><code class="docutils literal notranslate"><span class="pre">Root</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.curricula.pacing.Polynomial"><code class="docutils literal notranslate"><span class="pre">Polynomial</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-pacing-functions">Discrete Pacing Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.curricula.pacing.OneStep"><code class="docutils literal notranslate"><span class="pre">OneStep</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024 (MIT) Simon Rampp, Manuel Milling, Andreas Triantafyllopoulos, Björn W. Schuller.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

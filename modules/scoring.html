@@ -1,0 +1,1254 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Scoring Functions &#8212; aucurriculum — A Curriculum Learning Toolkit for Deep Learning Tasks built on top of autrainer.</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/theme.css?v=93fba4f5" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'modules/scoring';</script>
+    <script src="../_static/external_links.js?v=919ee35f"></script>
+    <script src="../_static/highlight_cli.js?v=d9429fbe"></script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Pacing Functions" href="pacing.html" />
+    <link rel="prev" title="Hydra Configurations" href="../usage/hydra_configurations.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo_light.webp" class="logo__image only-light" alt="aucurriculum — A Curriculum Learning Toolkit for Deep Learning Tasks built on top of autrainer."/>
+    <script>document.write(`<img src="../_static/logo_dark.webp" class="logo__image only-dark" alt="aucurriculum — A Curriculum Learning Toolkit for Deep Learning Tasks built on top of autrainer."/>`);</script>
+  
+  
+    <p class="title logo__title">aucurriculum</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/autrainer/aucurriculum" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/autrainer/aucurriculum" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/cli_reference.html">CLI Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/cli_wrapper.html">CLI Wrapper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/hydra_configurations.html">Hydra Configurations</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modules</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Scoring Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pacing.html">Pacing Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core.html">Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postprocessing.html">Postprocessing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../development/reproducibility_guide.html">Reproducibility Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/citing.html">Citing <cite>aucurriculum</cite></a></li>
+</ul>
+</div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Scoring Functions</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="scoring-functions">
+<span id="id1"></span><h1>Scoring Functions<a class="headerlink" href="#scoring-functions" title="Link to this heading">#</a></h1>
+<p>Scoring functions compute a difficulty score for each sample in a dataset.
+Difficulty scores are converted into a difficulty ordering by ranking all examples by ascending sample difficulty.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To create custom scoring functions, refer to the <a class="reference internal" href="../usage/tutorials.html#tut-scoring-functions"><span class="std std-ref">custom scoring functions tutorial</span></a>.</p>
+</div>
+<p>Such a difficulty ordering may be used to create a curriculum, a sequence of samples ordered by difficulty, which can be used in downstream tasks
+to train a model in combination with a <a class="reference internal" href="pacing.html#pacing-functions"><span class="std std-ref">pacing function</span></a>.</p>
+<p>Most scoring functions obtain sample difficulty scores from a single training configuration.
+<cite>aucurriculum</cite> allows for the automatic creation of ensemble scoring functions which may consist of multiple configurations
+and obtain the final difficulty ordering by averaging the per-example difficulty scores across all atomic scoring functions.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><cite>aucurriculum</cite> currently supports scoring functions exclusively for multi-class classification tasks,
+both for obtaining sample difficulty scores and for curriculum-based training.</p>
+</div>
+<p><cite>aucurriculum</cite> povides <a class="reference internal" href="#scoring-functions-model-based"><span class="std std-ref">model-based</span></a>,
+<a class="reference internal" href="#scoring-functions-predefined"><span class="std std-ref">predefined</span></a>,
+and <a class="reference internal" href="#scoring-functions-random"><span class="std std-ref">random</span></a> scoring functions to compute sample difficulty scores.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>All scoring function configurations contain placeholder values (indicated by <code class="xref py py-attr docutils literal notranslate"><span class="pre">???</span></code>) that need to be replaced with the appropriate values.
+For more information on how to configure scoring functions, refer to the <a class="reference internal" href="../usage/quickstart.html#quickstart"><span class="std std-ref">quickstart guide</span></a>.</p>
+</div>
+<section id="curriculum-score-manager">
+<h2>Curriculum Score Manager<a class="headerlink" href="#curriculum-score-manager" title="Link to this heading">#</a></h2>
+<p><a class="reference internal" href="#aucurriculum.curricula.CurriculumScoreManager" title="aucurriculum.curricula.CurriculumScoreManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">CurriculumScoreManager</span></code></a> manages the calculation of scoring functions in three steps:</p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#aucurriculum.curricula.CurriculumScoreManager.preprocess" title="aucurriculum.curricula.CurriculumScoreManager.preprocess"><code class="xref py py-meth docutils literal notranslate"><span class="pre">preprocess()</span></code></a>: Preprocess a scoring function configuration,
+creating one or more atomic scoring functions.</p></li>
+<li><p><a class="reference internal" href="#aucurriculum.curricula.CurriculumScoreManager.run" title="aucurriculum.curricula.CurriculumScoreManager.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a>: Run a single atomic scoring function, producing a difficulty score for each sample.</p></li>
+<li><p><a class="reference internal" href="#aucurriculum.curricula.CurriculumScoreManager.postprocess" title="aucurriculum.curricula.CurriculumScoreManager.postprocess"><code class="xref py py-meth docutils literal notranslate"><span class="pre">postprocess()</span></code></a>: Optionally combine multiple atomic scoring functions,
+creating a single difficulty score for each sample in a dataset.</p></li>
+</ol>
+<dl class="py class">
+<dt class="sig sig-object py" id="aucurriculum.curricula.CurriculumScoreManager">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aucurriculum.curricula.</span></span><span class="sig-name descname"><span class="pre">CurriculumScoreManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cfg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_directory</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/curricula/curriculum_score_manager.html#CurriculumScoreManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.curricula.CurriculumScoreManager" title="Link to this definition">#</a></dt>
+<dd><p>Curriculum score manager to control pre-processing, running, and
+post-processing of scoring functions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cfg</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">DictConfig</span></code></span>) – Curriculum configuration.</p></li>
+<li><p><strong>output_directory</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The output directory to save the results.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="aucurriculum.curricula.CurriculumScoreManager.preprocess">
+<span class="sig-name descname"><span class="pre">preprocess</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/curricula/curriculum_score_manager.html#CurriculumScoreManager.preprocess"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.curricula.CurriculumScoreManager.preprocess" title="Link to this definition">#</a></dt>
+<dd><p>Preprocess the scoring function, possibly creating one or more
+configurations and run names.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>]</span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of configurations and list of run names.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aucurriculum.curricula.CurriculumScoreManager.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/curricula/curriculum_score_manager.html#CurriculumScoreManager.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.curricula.CurriculumScoreManager.run" title="Link to this definition">#</a></dt>
+<dd><p>Run a single scoring function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>run_config</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">DictConfig</span></code></span>) – The run configuration.</p></li>
+<li><p><strong>run_name</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The name of the run.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aucurriculum.curricula.CurriculumScoreManager.postprocess">
+<span class="sig-name descname"><span class="pre">postprocess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">score_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">correlation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/curricula/curriculum_score_manager.html#CurriculumScoreManager.postprocess"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.curricula.CurriculumScoreManager.postprocess" title="Link to this definition">#</a></dt>
+<dd><p>Postprocess the scoring function and optionally create a correlation
+matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>score_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The score ID to postprocess.</p></li>
+<li><p><strong>correlation</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">DictConfig</span></code>]</span>) – The correlation matrix configuration. Dictionary of
+lists of score IDs to include in a single correlation matrix.
+Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="abstract-scoring-function">
+<h2>Abstract Scoring Function<a class="headerlink" href="#abstract-scoring-function" title="Link to this heading">#</a></h2>
+<p>All scoring functions inherit from the <a class="reference internal" href="#aucurriculum.curricula.scoring.AbstractScore" title="aucurriculum.curricula.scoring.AbstractScore"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractScore</span></code></a> class and implement the
+<a class="reference internal" href="#aucurriculum.curricula.scoring.AbstractScore.run" title="aucurriculum.curricula.scoring.AbstractScore.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a> method calculating the difficulty scores for each sample in the dataset.
+<a class="reference internal" href="#aucurriculum.curricula.scoring.AbstractScore" title="aucurriculum.curricula.scoring.AbstractScore"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractScore</span></code></a> additionally provides common methods that are shared among most scoring functions.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Scoring functions can optionally override the <a class="reference internal" href="#aucurriculum.curricula.scoring.AbstractScore.preprocess" title="aucurriculum.curricula.scoring.AbstractScore.preprocess"><code class="xref py py-meth docutils literal notranslate"><span class="pre">preprocess()</span></code></a> and
+<a class="reference internal" href="#aucurriculum.curricula.scoring.AbstractScore.postprocess" title="aucurriculum.curricula.scoring.AbstractScore.postprocess"><code class="xref py py-meth docutils literal notranslate"><span class="pre">postprocess()</span></code></a> methods to perform additional operations before
+and after the scoring function is run, such as combining multiple atomic scoring functions in a different way than averaging.</p>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="aucurriculum.curricula.scoring.AbstractScore">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aucurriculum.curricula.scoring.</span></span><span class="sig-name descname"><span class="pre">AbstractScore</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">results_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">experiment_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'train'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reverse_score</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criterion</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/curricula/scoring/abstract_score.html#AbstractScore"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.curricula.scoring.AbstractScore" title="Link to this definition">#</a></dt>
+<dd><p>Abstract class for scoring functions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>output_directory</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Directory where the scores will be stored.</p></li>
+<li><p><strong>results_dir</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The directory where the results are stored.</p></li>
+<li><p><strong>experiment_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The ID of the grid search experiment.</p></li>
+<li><p><strong>run_name</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]]</span>) – Name or list of names of the runs to score. Runs can be
+single runs or aggregated runs.</p></li>
+<li><p><strong>stop</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span>) – Model state dict to load or to stop at in [“best”, “last”].
+Defaults to None.</p></li>
+<li><p><strong>subset</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Dataset subset to use for scoring in [“train”, “dev”,
+“test”]. Defaults to “train”.</p></li>
+<li><p><strong>reverse_score</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Whether to reverse the score ranking. Defaults to
+False.</p></li>
+<li><p><strong>criterion</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span>) – The criterion to use for scoring. If None, no criterion
+will be used. Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If subset is not in [“train”, “dev”, “test”] or if stop
+    is not in [“best”, “last”, None].</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="aucurriculum.curricula.scoring.AbstractScore.preprocess">
+<span class="sig-name descname"><span class="pre">preprocess</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/curricula/scoring/abstract_score.html#AbstractScore.preprocess"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.curricula.scoring.AbstractScore.preprocess" title="Link to this definition">#</a></dt>
+<dd><p>Preprocess one or multiple runs, creating a list of configurations
+and a list of run names to score.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>]</span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of configurations and list of run names to score.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aucurriculum.curricula.scoring.AbstractScore.run">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/curricula/scoring/abstract_score.html#AbstractScore.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.curricula.scoring.AbstractScore.run" title="Link to this definition">#</a></dt>
+<dd><p>Run the scoring function for a single run and generate the scores.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">DictConfig</span></code></span>) – The configuration of the curriculum scoring function.</p></li>
+<li><p><strong>run_config</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">DictConfig</span></code></span>) – The configuration of the run to score.</p></li>
+<li><p><strong>run_name</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The name of the run to score.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aucurriculum.curricula.scoring.AbstractScore.postprocess">
+<span class="sig-name descname"><span class="pre">postprocess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">score_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">runs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/curricula/scoring/abstract_score.html#AbstractScore.postprocess"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.curricula.scoring.AbstractScore.postprocess" title="Link to this definition">#</a></dt>
+<dd><p>Postprocess the scores and create the final scoring function
+ordering by averaging the scores of multiple runs and ranking the
+samples based on the mean score.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>score_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – ID of the score to save.</p></li>
+<li><p><strong>runs</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></span>) – List of run names to postprocess and include in the score.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aucurriculum.curricula.scoring.AbstractScore.split_run_name">
+<span class="sig-name descname"><span class="pre">split_run_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/curricula/scoring/abstract_score.html#AbstractScore.split_run_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.curricula.scoring.AbstractScore.split_run_name" title="Link to this definition">#</a></dt>
+<dd><p>Split the full run name run name into the underlying training run
+name and the full run name containing the <cite>stop</cite> iteration (and
+optional criterion).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>run_name</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The run name to split.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The name of the underlying training run and the full run name.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aucurriculum.curricula.scoring.AbstractScore.create_criterion">
+<span class="sig-name descname"><span class="pre">create_criterion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'none'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/curricula/scoring/abstract_score.html#AbstractScore.create_criterion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.curricula.scoring.AbstractScore.create_criterion" title="Link to this definition">#</a></dt>
+<dd><p>Create the criterion for the scoring function based on the
+criterion configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractDataset</span></code></span>) – Dataset to use for criterion setup.</p></li>
+<li><p><strong>reduction</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Reduction to use for the criterion. Defaults to “none”.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Criterion for the scoring function.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aucurriculum.curricula.scoring.AbstractScore.prepare_data_and_model">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">prepare_data_and_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cfg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/curricula/scoring/abstract_score.html#AbstractScore.prepare_data_and_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.curricula.scoring.AbstractScore.prepare_data_and_model" title="Link to this definition">#</a></dt>
+<dd><p>Prepare the dataset and model for the scoring function based on the
+underlying training run configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cfg</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">DictConfig</span></code></span>) – The configuration of the underlying training run.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractDataset</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractModel</span></code>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The instantiated dataset and model.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aucurriculum.curricula.scoring.AbstractScore.load_model_checkpoint">
+<span class="sig-name descname"><span class="pre">load_model_checkpoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/curricula/scoring/abstract_score.html#AbstractScore.load_model_checkpoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.curricula.scoring.AbstractScore.load_model_checkpoint" title="Link to this definition">#</a></dt>
+<dd><p>Load the trained model checkpoint based on the run name and run
+configuration.
+The model will be loaded from the best checkpoint if stop is set to
+“best” and from the last checkpoint if stop is set to “last”.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></span>) – Model to load the checkpoint into.</p></li>
+<li><p><strong>run_name</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Name of the run to load the checkpoint from.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aucurriculum.curricula.scoring.AbstractScore.forward_pass">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">forward_pass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_map_fn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tqdm_desc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Scoring</span> <span class="pre">Forward</span> <span class="pre">Pass'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">disable_progress_bar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/curricula/scoring/abstract_score.html#AbstractScore.forward_pass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.curricula.scoring.AbstractScore.forward_pass" title="Link to this definition">#</a></dt>
+<dd><p>Perform a forward pass through the model and return the outputs and
+labels.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractModel</span></code></span>) – Model to perform the forward pass with.</p></li>
+<li><p><strong>loader</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></span>) – DataLoader to use for the forward pass.</p></li>
+<li><p><strong>batch_size</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Batch size to use for the forward pass.</p></li>
+<li><p><strong>output_map_fn</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>]</span>) – Function to map the model outputs to the desired
+output format.</p></li>
+<li><p><strong>output_size</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]</span>) – Size of the output tensor. If None, the model output
+should be a single scalar. Defaults to None.</p></li>
+<li><p><strong>tqdm_desc</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Description for the tqdm progress bar. Defaults to
+“Scoring Forward Pass”.</p></li>
+<li><p><strong>disable_progress_bar</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Whether to disable the progress bar. Defaults
+to True.</p></li>
+<li><p><strong>device</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">device</span></code>]</span>) – Device to use for the forward pass. If None, the device
+will be set to “cpu”. Defaults to None.</p></li>
+<li><p><strong>timer</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Timer</span></code>]</span>) – Timer to time the forward pass. If provided, the timer is
+started before the forward pass and stopped after the forward
+pass. Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Mapped model outputs and labels.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aucurriculum.curricula.scoring.AbstractScore.create_dataframe">
+<span class="sig-name descname"><span class="pre">create_dataframe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scores</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/curricula/scoring/abstract_score.html#AbstractScore.create_dataframe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.curricula.scoring.AbstractScore.create_dataframe" title="Link to this definition">#</a></dt>
+<dd><p>Create a dataframe from the scores, labels, and dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scores</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></span>) – The score for each sample.</p></li>
+<li><p><strong>labels</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></span>) – The encoded labels for each sample.</p></li>
+<li><p><strong>data</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractDataset</span></code></span>) – The dataset.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The dataframe with the scores, encoded labels, and decoded labels.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aucurriculum.curricula.scoring.AbstractScore.rank_and_normalize">
+<span class="sig-name descname"><span class="pre">rank_and_normalize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/curricula/scoring/abstract_score.html#AbstractScore.rank_and_normalize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.curricula.scoring.AbstractScore.rank_and_normalize" title="Link to this definition">#</a></dt>
+<dd><p>Rank and normalize the scores in the dataframe by ranking the scores
+using method=”first” and normalizing the ranks to the range [0, 1].
+If <cite>reverse_score</cite> is set to True, the ranks will be reversed.</p>
+<p>In the resulting difficulty orderint, lower ranks always indicate
+easier samples.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>df</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></span>) – The output dataframe with “mean” column containing the scores.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The normalized ranks.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aucurriculum.curricula.scoring.AbstractScore.save_scores">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">save_scores</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/curricula/scoring/abstract_score.html#AbstractScore.save_scores"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.curricula.scoring.AbstractScore.save_scores" title="Link to this definition">#</a></dt>
+<dd><p>Save the scores dataframe to the specified path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></span>) – The scores dataframe.</p></li>
+<li><p><strong>path</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The path to save the scores dataframe.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aucurriculum.curricula.scoring.AbstractScore.get_dataset_subset">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_dataset_subset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subset</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/curricula/scoring/abstract_score.html#AbstractScore.get_dataset_subset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.curricula.scoring.AbstractScore.get_dataset_subset" title="Link to this definition">#</a></dt>
+<dd><p>Get the dataset subset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractDataset</span></code></span>) – The dataset.</p></li>
+<li><p><strong>subset</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The dataset subset to get in [“train”, “dev”, “test”].</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The dataset subset.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aucurriculum.curricula.scoring.AbstractScore.get_dataframe">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_dataframe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subset</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/curricula/scoring/abstract_score.html#AbstractScore.get_dataframe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.curricula.scoring.AbstractScore.get_dataframe" title="Link to this definition">#</a></dt>
+<dd><p>Get the dataframe of the dataset subset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractDataset</span></code></span>) – The dataset.</p></li>
+<li><p><strong>subset</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The dataset subset to get in [“train”, “dev”, “test”].</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The dataframe of the dataset subset.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="model-based-scoring-functions">
+<span id="scoring-functions-model-based"></span><h2>Model-based Scoring Functions<a class="headerlink" href="#model-based-scoring-functions" title="Link to this heading">#</a></h2>
+<p>Model-based scoring functions obtain a difficulty score for each sample by leveraging trained models
+and using, among others, training dynamics, model predictions, or losses to determine the difficulty of a sample.</p>
+<p>Most model-based scoring functions require a trained model to compute the difficulty scores which is specified in the scoring function configuration
+under the <code class="xref py py-attr docutils literal notranslate"><span class="pre">run_name</span></code> parameter.
+The <code class="xref py py-attr docutils literal notranslate"><span class="pre">run_name</span></code> should be a run name or list of run names from which to load the models for scoring and should exist in the
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">results_dir</span></code> and <code class="xref py py-attr docutils literal notranslate"><span class="pre">experiment_id</span></code> set in the curriculum scoring configuration (<code class="file docutils literal notranslate"><span class="pre">conf/curriculum.yaml</span></code>) file.
+It is also possible to specify (lists of) aggregated run names which are automatically resolved to the underlying runs,
+effectively creating an ensemble scoring function.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="aucurriculum.curricula.scoring.CELoss">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aucurriculum.curricula.scoring.</span></span><span class="sig-name descname"><span class="pre">CELoss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">results_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">experiment_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criterion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'best'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'train'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/curricula/scoring/ce_loss.html#CELoss"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.curricula.scoring.CELoss" title="Link to this definition">#</a></dt>
+<dd><p>Cross-Entropy Loss scoring function computing the cross-entropy loss
+for each sample in the dataset individually. It is originally termed
+bootstrapping and implemented as described in:
+<a class="reference external" href="https://arxiv.org/abs/1904.03626">https://arxiv.org/abs/1904.03626</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>output_directory</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Directory where the scores will be stored.</p></li>
+<li><p><strong>results_dir</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The directory where the results are stored.</p></li>
+<li><p><strong>experiment_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The ID of the grid search experiment.</p></li>
+<li><p><strong>run_name</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Name or list of names of the runs to score. Runs can be
+single runs or aggregated runs.</p></li>
+<li><p><strong>criterion</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The criterion to use for obtaining the per-example loss.
+The reduction of the criterion is automatically set to “none”.</p></li>
+<li><p><strong>stop</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Model state dict to load or to stop at in [“best”, “last”].
+Defaults to “best”.</p></li>
+<li><p><strong>subset</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Dataset subset to use for scoring in [“train”, “dev”,
+“test”]. Defaults to “train”.</p></li>
+</ul>
+</dd>
+</dl>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Default Configurations</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="literal-block-wrapper docutils container" id="default-celoss">
+<div class='code-block-caption'><span class='caption-text'>conf/curriculum/scoring/CELoss.yaml</span><a class='headerlink' href='#default-celoss' title='Link to this code'>#</a></div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CELoss</span>
+<span class="linenos">2</span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CELoss</span>
+<span class="linenos">3</span><span class="nt">_target_</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aucurriculum.curricula.scoring.CELoss</span>
+<span class="linenos">4</span><span class="nt">run_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">???</span>
+<span class="linenos">5</span><span class="nt">criterion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">autrainer.criterions.CrossEntropyLoss</span>
+<span class="linenos">6</span><span class="nt">stop</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">best</span><span class="w"> </span><span class="c1"># &quot;best&quot; or &quot;last&quot;</span>
+<span class="linenos">7</span><span class="nt">subset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">train</span><span class="w"> </span><span class="c1"># train, dev, test</span>
+</pre></div>
+</div>
+</div></div>
+</details></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="aucurriculum.curricula.scoring.CumulativeAccuracy">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aucurriculum.curricula.scoring.</span></span><span class="sig-name descname"><span class="pre">CumulativeAccuracy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">results_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">experiment_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'best'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'train'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/curricula/scoring/cumulative_accuracy.html#CumulativeAccuracy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.curricula.scoring.CumulativeAccuracy" title="Link to this definition">#</a></dt>
+<dd><p>Cumulative Accuracy scoring function computing the mean accuracy
+from the first to the <cite>stop</cite> epoch for each sample in the dataset
+individually. The scoring function serves as a computationally less
+expensive proxy to the C-score as described in:
+<a class="reference external" href="https://arxiv.org/abs/2002.03206">https://arxiv.org/abs/2002.03206</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>output_directory</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Directory where the scores will be stored.</p></li>
+<li><p><strong>results_dir</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The directory where the results are stored.</p></li>
+<li><p><strong>experiment_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The ID of the grid search experiment.</p></li>
+<li><p><strong>run_name</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Name or list of names of the runs to score. Runs can be
+single runs or aggregated runs.</p></li>
+<li><p><strong>stop</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Model state dict to load or to stop at in [“best”, “last”].
+Defaults to “best”.</p></li>
+<li><p><strong>subset</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Dataset subset to use for scoring in [“train”, “dev”,
+“test”]. Defaults to “train”.</p></li>
+</ul>
+</dd>
+</dl>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Default Configurations</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="literal-block-wrapper docutils container" id="default-cumulativeaccuracy">
+<div class='code-block-caption'><span class='caption-text'>conf/curriculum/scoring/CumulativeAccuracy.yaml</span><a class='headerlink' href='#default-cumulativeaccuracy' title='Link to this code'>#</a></div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CumulativeAccuracy</span>
+<span class="linenos">2</span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CumulativeAccuracy</span>
+<span class="linenos">3</span><span class="nt">_target_</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aucurriculum.curricula.scoring.CumulativeAccuracy</span>
+<span class="linenos">4</span><span class="nt">run_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">???</span>
+<span class="linenos">5</span><span class="nt">stop</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">best</span><span class="w"> </span><span class="c1"># &quot;best&quot; or &quot;last&quot;</span>
+<span class="linenos">6</span><span class="nt">subset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">train</span><span class="w"> </span><span class="c1"># train, dev, test</span>
+</pre></div>
+</div>
+</div></div>
+</details></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="aucurriculum.curricula.scoring.CVLoss">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aucurriculum.curricula.scoring.</span></span><span class="sig-name descname"><span class="pre">CVLoss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">results_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">experiment_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">splits</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">setup</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criterion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'best'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'train'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/curricula/scoring/cv_loss.html#CVLoss"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.curricula.scoring.CVLoss" title="Link to this definition">#</a></dt>
+<dd><p>Cross-Validation Loss scoring function computing the cross-entropy
+loss for each sample in the dataset individually. The dataset is split
+into <cite>splits</cite> parts and the loss is computed for each part individually
+by training on the remaining parts as described in:
+TODO: add reference once paper is published.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>output_directory</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Directory where the scores will be stored.</p></li>
+<li><p><strong>results_dir</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The directory where the results are stored.</p></li>
+<li><p><strong>experiment_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The ID of the grid search experiment.</p></li>
+<li><p><strong>splits</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Number of splits for the cross-validation.</p></li>
+<li><p><strong>setup</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">DictConfig</span></code></span>) – <p>Configuration for the grid search to perform for each split.
+Each configuration parameter can be a string or list of strings
+for multiple configurations. The following parameters are
+required:</p>
+<ul>
+<li><p>filters: Optional list of filters to apply to the runs.</p></li>
+<li><p>dataset: Dataset ID.</p></li>
+<li><p>model: Model ID.</p></li>
+<li><p>optimizer: Optimizer ID.</p></li>
+<li><p>learning_rate: Learning rate.</p></li>
+<li><p>scheduler: Scheduler ID.</p></li>
+<li><p>augmentation: Augmentation ID.</p></li>
+<li><p>seed: Seed.</p></li>
+<li><p>batch_size: Batch size.</p></li>
+<li><p>inference_batch_size: Batch size for inference.</p></li>
+<li><p>plotting: Plotting ID.</p></li>
+<li><p>training_type: Training type.</p></li>
+<li><p>iterations: Number of iterations.</p></li>
+<li><p>eval_frequency: Evaluation frequency.</p></li>
+<li><p>save_frequency: Save frequency.</p></li>
+<li><p>save_train_outputs: Whether to save the training outputs.</p></li>
+<li><p>save_dev_outputs: Whether to save the dev outputs.</p></li>
+<li><p>save_test_outputs: Whether to save the test outputs.</p></li>
+</ul>
+</p></li>
+<li><p><strong>criterion</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The criterion to use for obtaining the per-example loss.
+The reduction of the criterion is automatically set to “none”.</p></li>
+<li><p><strong>stop</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Model state dict to load or to stop at in [“best”, “last”].
+Defaults to “best”.</p></li>
+<li><p><strong>subset</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Dataset subset to use for scoring in [“train”, “dev”,
+“test”]. Defaults to “train”.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the number of splits is less than 2.</p>
+</dd>
+</dl>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Default Configurations</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="literal-block-wrapper docutils container" id="default-cvloss">
+<div class='code-block-caption'><span class='caption-text'>conf/curriculum/scoring/CVLoss.yaml</span><a class='headerlink' href='#default-cvloss' title='Link to this code'>#</a></div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CVLoss</span>
+<span class="linenos"> 2</span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CVLoss</span>
+<span class="linenos"> 3</span><span class="nt">_target_</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aucurriculum.curricula.scoring.CVLoss</span>
+<span class="linenos"> 4</span><span class="nt">splits</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="linenos"> 5</span><span class="nt">setup</span><span class="p">:</span>
+<span class="linenos"> 6</span><span class="w">  </span><span class="nt">filters</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
+<span class="linenos"> 7</span><span class="w">  </span><span class="nt">dataset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">???</span>
+<span class="linenos"> 8</span><span class="w">  </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">???</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="nt">optimizer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">???</span>
+<span class="linenos">10</span><span class="w">  </span><span class="nt">learning_rate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">???</span>
+<span class="linenos">11</span><span class="w">  </span><span class="nt">scheduler</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">???</span>
+<span class="linenos">12</span><span class="w">  </span><span class="nt">augmentation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">???</span>
+<span class="linenos">13</span><span class="w">  </span><span class="nt">seed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">???</span>
+<span class="linenos">14</span><span class="w">  </span><span class="nt">batch_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">???</span>
+<span class="linenos">15</span><span class="w">  </span><span class="nt">inference_batch_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">???</span>
+<span class="linenos">16</span><span class="w">  </span><span class="nt">plotting</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Default</span>
+<span class="linenos">17</span><span class="w">  </span><span class="nt">training_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">epoch</span>
+<span class="linenos">18</span><span class="w">  </span><span class="nt">iterations</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+<span class="linenos">19</span><span class="w">  </span><span class="nt">eval_frequency</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="linenos">20</span><span class="w">  </span><span class="nt">save_frequency</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="linenos">21</span><span class="w">  </span><span class="nt">save_train_outputs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="linenos">22</span><span class="w">  </span><span class="nt">save_dev_outputs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="linenos">23</span><span class="w">  </span><span class="nt">save_test_outputs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="linenos">24</span><span class="nt">criterion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">autrainer.criterions.CrossEntropyLoss</span>
+<span class="linenos">25</span><span class="nt">stop</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">best</span>
+<span class="linenos">26</span><span class="nt">subset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">train</span>
+</pre></div>
+</div>
+</div></div>
+</details></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="aucurriculum.curricula.scoring.FirstIteration">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aucurriculum.curricula.scoring.</span></span><span class="sig-name descname"><span class="pre">FirstIteration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">results_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">experiment_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'best'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'train'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/curricula/scoring/first_iteration.html#FirstIteration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.curricula.scoring.FirstIteration" title="Link to this definition">#</a></dt>
+<dd><p>First Iteration scoring function computing the first iteration
+in which the model correctly predicts the target including all
+subsequent iterations for each sample in the dataset individually as
+described in:
+<a class="reference external" href="https://arxiv.org/abs/2012.03107">https://arxiv.org/abs/2012.03107</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>output_directory</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Directory where the scores will be stored.</p></li>
+<li><p><strong>results_dir</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The directory where the results are stored.</p></li>
+<li><p><strong>experiment_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The ID of the grid search experiment.</p></li>
+<li><p><strong>run_name</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Name or list of names of the runs to score. Runs can be
+single runs or aggregated runs.</p></li>
+<li><p><strong>stop</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Model state dict to load or to stop at in [“best”, “last”].
+Defaults to “best”.</p></li>
+<li><p><strong>subset</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Dataset subset to use for scoring in [“train”, “dev”,
+“test”]. Defaults to “train”.</p></li>
+</ul>
+</dd>
+</dl>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Default Configurations</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="literal-block-wrapper docutils container" id="default-firstiteration">
+<div class='code-block-caption'><span class='caption-text'>conf/curriculum/scoring/FirstIteration.yaml</span><a class='headerlink' href='#default-firstiteration' title='Link to this code'>#</a></div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FirstIteration</span>
+<span class="linenos">2</span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FirstIteration</span>
+<span class="linenos">3</span><span class="nt">_target_</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aucurriculum.curricula.scoring.FirstIteration</span>
+<span class="linenos">4</span><span class="nt">run_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">???</span>
+<span class="linenos">5</span><span class="nt">stop</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">best</span><span class="w"> </span><span class="c1"># &quot;best&quot; or &quot;last&quot;</span>
+<span class="linenos">6</span><span class="nt">subset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">train</span><span class="w"> </span><span class="c1"># train, dev, test</span>
+</pre></div>
+</div>
+</div></div>
+</details></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="aucurriculum.curricula.scoring.PredictionDepth">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aucurriculum.curricula.scoring.</span></span><span class="sig-name descname"><span class="pre">PredictionDepth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">results_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">experiment_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">probe_placements</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_embedding_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">match_dimensions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">knn_n_neighbors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">knn_batch_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1024</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_embeddings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'best'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'train'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/curricula/scoring/prediction_depth.html#PredictionDepth"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.curricula.scoring.PredictionDepth" title="Link to this definition">#</a></dt>
+<dd><p>Prediction Depth scoring function computing the depth at which the
+first and all subsequent KNN probes align with the model’s prediction
+for each sample in the dataset individually as described in:
+<a class="reference external" href="https://arxiv.org/abs/2106.09647">https://arxiv.org/abs/2106.09647</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>output_directory</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Directory where the scores will be stored.</p></li>
+<li><p><strong>results_dir</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The directory where the results are stored.</p></li>
+<li><p><strong>experiment_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The ID of the grid search experiment.</p></li>
+<li><p><strong>run_name</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Name or list of names of the runs to score. Runs can be
+single runs or aggregated runs.</p></li>
+<li><p><strong>probe_placements</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]]]</span>) – Names of the nodes in the traced model graph
+where the probes should be placed, specified using regex
+patterns. The input and output of the model are automatically
+added. If a list is provided, the same placements will be used
+for all runs. If a dictionary is provided, the placements will
+be used for the corresponding run names.</p></li>
+<li><p><strong>max_embedding_size</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]</span>) – Maximum dimensionality of the flattened
+embeddings. If embeddings exceed this size, they will be
+pooled. Defaults to None.</p></li>
+<li><p><strong>match_dimensions</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Whether to match the spatial dimensions of the
+embeddings and create square embeddings. Defaults to False.</p></li>
+<li><p><strong>knn_n_neighbors</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Number of neighbors to use for the parallel
+k-nearest neighbors algorithm. Defaults to 30.</p></li>
+<li><p><strong>knn_batch_size</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Batch size for the parallel k-nearest neighbors
+algorithm. Defaults to 1024.</p></li>
+<li><p><strong>save_embeddings</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Whether to save the embeddings for each probe.
+Defaults to False.</p></li>
+<li><p><strong>stop</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Model state dict to load or to stop at in [“best”, “last”].
+Defaults to “best”.</p></li>
+<li><p><strong>subset</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Dataset subset to use for scoring in [“train”, “dev”,
+“test”]. Defaults to “train”.</p></li>
+</ul>
+</dd>
+</dl>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Default Configurations</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="literal-block-wrapper docutils container" id="default-predictiondepth">
+<div class='code-block-caption'><span class='caption-text'>conf/curriculum/scoring/PredictionDepth.yaml</span><a class='headerlink' href='#default-predictiondepth' title='Link to this code'>#</a></div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PredictionDepth</span>
+<span class="linenos">2</span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PredictionDepth</span>
+<span class="linenos">3</span><span class="nt">_target_</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aucurriculum.curricula.scoring.PredictionDepth</span>
+<span class="linenos">4</span><span class="nt">run_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">???</span>
+<span class="linenos">5</span><span class="nt">probe_placements</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">???</span>
+<span class="linenos">6</span><span class="nt">max_embedding_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">65536</span>
+<span class="linenos">7</span><span class="nt">match_dimensions</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="linenos">8</span><span class="nt">stop</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">best</span><span class="w"> </span><span class="c1"># &quot;best&quot; or &quot;last&quot;</span>
+<span class="linenos">9</span><span class="nt">subset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">train</span><span class="w"> </span><span class="c1"># train, dev, test</span>
+</pre></div>
+</div>
+</div></div>
+</details></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="aucurriculum.curricula.scoring.TransferTeacher">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aucurriculum.curricula.scoring.</span></span><span class="sig-name descname"><span class="pre">TransferTeacher</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">results_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">experiment_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'train'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/curricula/scoring/transfer_teacher.html#TransferTeacher"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.curricula.scoring.TransferTeacher" title="Link to this definition">#</a></dt>
+<dd><p>Transfer Teacher scoring function that computes margin to the
+decision boundary of a support vector machine (SVM) trained on the
+embeddings of a pre-trained model for each sample in the dataset as
+described in:
+<a class="reference external" href="https://arxiv.org/abs/1904.03626">https://arxiv.org/abs/1904.03626</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>output_directory</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Directory where the scores will be stored.</p></li>
+<li><p><strong>results_dir</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The directory where the results are stored.</p></li>
+<li><p><strong>experiment_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The ID of the grid search experiment.</p></li>
+<li><p><strong>model</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]]</span>) – Model ID or list of model IDs to use for scoring.</p></li>
+<li><p><strong>dataset</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Dataset ID to use for scoring.</p></li>
+<li><p><strong>subset</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Dataset subset to use for scoring in [“train”, “dev”,
+“test”]. Defaults to “train”.</p></li>
+</ul>
+</dd>
+</dl>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Default Configurations</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="literal-block-wrapper docutils container" id="default-transferteacher">
+<div class='code-block-caption'><span class='caption-text'>conf/curriculum/scoring/TransferTeacher.yaml</span><a class='headerlink' href='#default-transferteacher' title='Link to this code'>#</a></div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TransferTeacher</span>
+<span class="linenos">2</span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TransferTeacher</span>
+<span class="linenos">3</span><span class="nt">_target_</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aucurriculum.curricula.scoring.TransferTeacher</span>
+<span class="linenos">4</span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">???</span>
+<span class="linenos">5</span><span class="nt">dataset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">???</span>
+<span class="linenos">6</span><span class="nt">subset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">train</span><span class="w"> </span><span class="c1"># train, dev, test</span>
+</pre></div>
+</div>
+</div></div>
+</details></dd></dl>
+
+</section>
+<section id="predefined-scoring-functions">
+<span id="scoring-functions-predefined"></span><h2>Predefined Scoring Functions<a class="headerlink" href="#predefined-scoring-functions" title="Link to this heading">#</a></h2>
+<p>Predefined scoring functions determine the difficulty of a sample based on predefined criteria and are specified in a CSV file.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="aucurriculum.curricula.scoring.Predefined">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aucurriculum.curricula.scoring.</span></span><span class="sig-name descname"><span class="pre">Predefined</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">results_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">experiment_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scores_column</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reverse</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'train'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/curricula/scoring/predefined_score.html#Predefined"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.curricula.scoring.Predefined" title="Link to this definition">#</a></dt>
+<dd><p>Predefined scoring function using predefined scores from a file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>output_directory</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Directory where the scores will be stored.</p></li>
+<li><p><strong>results_dir</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The directory where the results are stored.</p></li>
+<li><p><strong>experiment_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The ID of the grid search experiment.</p></li>
+<li><p><strong>file</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Path to the file containing the scores.</p></li>
+<li><p><strong>scores_column</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Column name of the scores in the file.</p></li>
+<li><p><strong>reverse</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Whether to reverse the order of the scores.</p></li>
+<li><p><strong>dataset</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Dataset ID to use for scoring.</p></li>
+<li><p><strong>subset</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Dataset subset to use for scoring in [“train”, “dev”,
+“test”]. Defaults to “train”.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the file does not exist.</p>
+</dd>
+</dl>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Default Configurations</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="literal-block-wrapper docutils container" id="default-predefined">
+<div class='code-block-caption'><span class='caption-text'>conf/curriculum/scoring/Predefined.yaml</span><a class='headerlink' href='#default-predefined' title='Link to this code'>#</a></div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Predefined</span>
+<span class="linenos">2</span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Predefined</span>
+<span class="linenos">3</span><span class="nt">_target_</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aucurriculum.curricula.scoring.Predefined</span>
+<span class="linenos">4</span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">???</span>
+<span class="linenos">5</span><span class="nt">scores_column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">???</span>
+<span class="linenos">6</span><span class="nt">reverse</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">???</span><span class="w"> </span><span class="c1"># true, false</span>
+<span class="linenos">7</span><span class="nt">dataset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">???</span>
+<span class="linenos">8</span><span class="nt">subset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">train</span><span class="w"> </span><span class="c1"># train, dev, test</span>
+</pre></div>
+</div>
+</div></div>
+</details></dd></dl>
+
+</section>
+<section id="random-scoring-functions">
+<span id="scoring-functions-random"></span><h2>Random Scoring Functions<a class="headerlink" href="#random-scoring-functions" title="Link to this heading">#</a></h2>
+<p>Random scoring functions assign a random difficulty score to each sample in the dataset.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="aucurriculum.curricula.scoring.Random">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aucurriculum.curricula.scoring.</span></span><span class="sig-name descname"><span class="pre">Random</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">results_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">experiment_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'train'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/curricula/scoring/random_score.html#Random"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.curricula.scoring.Random" title="Link to this definition">#</a></dt>
+<dd><p>Random scoring function that assigns random scores to each sample in
+the dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>output_directory</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Directory where the scores will be stored.</p></li>
+<li><p><strong>results_dir</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The directory where the results are stored.</p></li>
+<li><p><strong>experiment_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The ID of the grid search experiment.</p></li>
+<li><p><strong>dataset</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Dataset ID to use for scoring.</p></li>
+<li><p><strong>seed</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Seed to use for random scoring.</p></li>
+<li><p><strong>subset</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Dataset subset to use for scoring in [“train”, “dev”,
+“test”]. Defaults to “train”.</p></li>
+</ul>
+</dd>
+</dl>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Default Configurations</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="literal-block-wrapper docutils container" id="default-random">
+<div class='code-block-caption'><span class='caption-text'>conf/curriculum/scoring/Random.yaml</span><a class='headerlink' href='#default-random' title='Link to this code'>#</a></div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Random</span>
+<span class="linenos">2</span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Random</span>
+<span class="linenos">3</span><span class="nt">_target_</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aucurriculum.curricula.scoring.Random</span>
+<span class="linenos">4</span><span class="nt">dataset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">???</span>
+<span class="linenos">5</span><span class="nt">seed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="linenos">6</span><span class="nt">subset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">train</span><span class="w"> </span><span class="c1"># train, dev, test</span>
+</pre></div>
+</div>
+</div></div>
+</details></dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curriculum-score-manager">Curriculum Score Manager</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.curricula.CurriculumScoreManager"><code class="docutils literal notranslate"><span class="pre">CurriculumScoreManager</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.curricula.CurriculumScoreManager.preprocess"><code class="docutils literal notranslate"><span class="pre">CurriculumScoreManager.preprocess()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.curricula.CurriculumScoreManager.run"><code class="docutils literal notranslate"><span class="pre">CurriculumScoreManager.run()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.curricula.CurriculumScoreManager.postprocess"><code class="docutils literal notranslate"><span class="pre">CurriculumScoreManager.postprocess()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#abstract-scoring-function">Abstract Scoring Function</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.curricula.scoring.AbstractScore"><code class="docutils literal notranslate"><span class="pre">AbstractScore</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.curricula.scoring.AbstractScore.preprocess"><code class="docutils literal notranslate"><span class="pre">AbstractScore.preprocess()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.curricula.scoring.AbstractScore.run"><code class="docutils literal notranslate"><span class="pre">AbstractScore.run()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.curricula.scoring.AbstractScore.postprocess"><code class="docutils literal notranslate"><span class="pre">AbstractScore.postprocess()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.curricula.scoring.AbstractScore.split_run_name"><code class="docutils literal notranslate"><span class="pre">AbstractScore.split_run_name()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.curricula.scoring.AbstractScore.create_criterion"><code class="docutils literal notranslate"><span class="pre">AbstractScore.create_criterion()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.curricula.scoring.AbstractScore.prepare_data_and_model"><code class="docutils literal notranslate"><span class="pre">AbstractScore.prepare_data_and_model()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.curricula.scoring.AbstractScore.load_model_checkpoint"><code class="docutils literal notranslate"><span class="pre">AbstractScore.load_model_checkpoint()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.curricula.scoring.AbstractScore.forward_pass"><code class="docutils literal notranslate"><span class="pre">AbstractScore.forward_pass()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.curricula.scoring.AbstractScore.create_dataframe"><code class="docutils literal notranslate"><span class="pre">AbstractScore.create_dataframe()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.curricula.scoring.AbstractScore.rank_and_normalize"><code class="docutils literal notranslate"><span class="pre">AbstractScore.rank_and_normalize()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.curricula.scoring.AbstractScore.save_scores"><code class="docutils literal notranslate"><span class="pre">AbstractScore.save_scores()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.curricula.scoring.AbstractScore.get_dataset_subset"><code class="docutils literal notranslate"><span class="pre">AbstractScore.get_dataset_subset()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.curricula.scoring.AbstractScore.get_dataframe"><code class="docutils literal notranslate"><span class="pre">AbstractScore.get_dataframe()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-based-scoring-functions">Model-based Scoring Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.curricula.scoring.CELoss"><code class="docutils literal notranslate"><span class="pre">CELoss</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.curricula.scoring.CumulativeAccuracy"><code class="docutils literal notranslate"><span class="pre">CumulativeAccuracy</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.curricula.scoring.CVLoss"><code class="docutils literal notranslate"><span class="pre">CVLoss</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.curricula.scoring.FirstIteration"><code class="docutils literal notranslate"><span class="pre">FirstIteration</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.curricula.scoring.PredictionDepth"><code class="docutils literal notranslate"><span class="pre">PredictionDepth</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.curricula.scoring.TransferTeacher"><code class="docutils literal notranslate"><span class="pre">TransferTeacher</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predefined-scoring-functions">Predefined Scoring Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.curricula.scoring.Predefined"><code class="docutils literal notranslate"><span class="pre">Predefined</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-scoring-functions">Random Scoring Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.curricula.scoring.Random"><code class="docutils literal notranslate"><span class="pre">Random</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024 (MIT) Simon Rampp, Manuel Milling, Andreas Triantafyllopoulos, Björn W. Schuller.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

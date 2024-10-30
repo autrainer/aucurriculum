@@ -1,0 +1,649 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Hydra Configurations &#8212; aucurriculum — A Curriculum Learning Toolkit for Deep Learning Tasks built on top of autrainer.</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/theme.css?v=93fba4f5" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'usage/hydra_configurations';</script>
+    <script src="../_static/external_links.js?v=919ee35f"></script>
+    <script src="../_static/highlight_cli.js?v=d9429fbe"></script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Scoring Functions" href="../modules/scoring.html" />
+    <link rel="prev" title="CLI Wrapper" href="cli_wrapper.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo_light.webp" class="logo__image only-light" alt="aucurriculum — A Curriculum Learning Toolkit for Deep Learning Tasks built on top of autrainer."/>
+    <script>document.write(`<img src="../_static/logo_dark.webp" class="logo__image only-dark" alt="aucurriculum — A Curriculum Learning Toolkit for Deep Learning Tasks built on top of autrainer."/>`);</script>
+  
+  
+    <p class="title logo__title">aucurriculum</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/autrainer/aucurriculum" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/autrainer/aucurriculum" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Usage</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli_reference.html">CLI Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli_wrapper.html">CLI Wrapper</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Hydra Configurations</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/scoring.html">Scoring Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/pacing.html">Pacing Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/core.html">Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/postprocessing.html">Postprocessing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../development/reproducibility_guide.html">Reproducibility Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/citing.html">Citing <cite>aucurriculum</cite></a></li>
+</ul>
+</div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Hydra Configurations</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="hydra-configurations">
+<span id="id1"></span><h1>Hydra Configurations<a class="headerlink" href="#hydra-configurations" title="Link to this heading">#</a></h1>
+<p>Analogous to <a class="reference external" href="https://autrainer.github.io/autrainer/usage/hydra_configurations.html">autrainer</a>,
+<cite>aucurriculum</cite> uses <a class="reference external" href="https://hydra.cc/docs/intro/">Hydra</a> to configure training experiments.
+All configurations are stored in the <code class="file docutils literal notranslate"><span class="pre">conf/</span></code> directory and are defined as YAML files.</p>
+<section id="main-configuration">
+<span id="id2"></span><h2>Main Configuration<a class="headerlink" href="#main-configuration" title="Link to this heading">#</a></h2>
+<p><cite>aucurriculum</cite> extends the <a class="reference external" href="https://autrainer.github.io/autrainer/usage/hydra_configurations.html#main-configuration">autrainer main entry point</a>
+for curriculum training and adds an additional curriculum scoring entry point
+for obtaining difficulty orderings from one or more <a class="reference internal" href="../modules/scoring.html#scoring-functions"><span class="std std-ref">scoring functions</span></a>.</p>
+<section id="curriculum-training">
+<span id="main-configuration-training"></span><h3>Curriculum Training<a class="headerlink" href="#curriculum-training" title="Link to this heading">#</a></h3>
+<p>The main entry point for curriculum training is defined in the <code class="file docutils literal notranslate"><span class="pre">conf/config.yaml</span></code> file.</p>
+<div class="literal-block-wrapper docutils container" id="default-config">
+<div class='code-block-caption'><span class='caption-text'>conf/config.yaml</span><a class='headerlink' href='#default-config' title='Link to this code'>#</a></div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="nt">defaults</span><span class="p">:</span>
+<span class="linenos"> 2</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">_aucurriculum_train_</span>
+<span class="linenos"> 3</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">_self_</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="nt">results_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">results</span>
+<span class="linenos"> 6</span><span class="nt">experiment_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+<span class="linenos"> 7</span><span class="nt">iterations</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="nt">hydra</span><span class="p">:</span>
+<span class="linenos">10</span><span class="w">  </span><span class="nt">sweeper</span><span class="p">:</span>
+<span class="linenos">11</span><span class="w">    </span><span class="nt">params</span><span class="p">:</span>
+<span class="linenos">12</span><span class="w">      </span><span class="nt">+seed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="linenos">13</span><span class="w">      </span><span class="nt">+batch_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">32</span>
+<span class="linenos">14</span><span class="w">      </span><span class="nt">+learning_rate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.001</span>
+<span class="linenos">15</span><span class="w">      </span><span class="nt">dataset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ToyTabular-C</span>
+<span class="linenos">16</span><span class="w">      </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ToyFFNN</span>
+<span class="linenos">17</span><span class="w">      </span><span class="nt">optimizer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Adam</span>
+<span class="linenos">18</span><span class="w">      </span><span class="nt">curriculum</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">None</span>
+<span class="linenos">19</span><span class="w">      </span><span class="nt">curriculum/sampling</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">None</span>
+<span class="linenos">20</span><span class="w">      </span><span class="nt">curriculum/scoring</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">None</span>
+<span class="linenos">21</span><span class="w">      </span><span class="nt">curriculum/pacing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">None</span>
+<span class="linenos">22</span><span class="w">      </span><span class="nt">curriculum.pacing.initial_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="linenos">23</span><span class="w">      </span><span class="nt">curriculum.pacing.final_iteration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</pre></div>
+</div>
+</div><p>In addition to the <a class="reference external" href="https://autrainer.github.io/autrainer/usage/hydra_configurations.html#default-config">autrainer main configuration file</a>
+the following <code class="xref py py-attr docutils literal notranslate"><span class="pre">hypdra/sweeper/params</span></code> parameters are defined:</p>
+<ul>
+<li><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">curriculum</span></code>: The curriculum configuration. The following options are available:</p>
+<ul class="simple">
+<li><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">None</span></code>: No curriculum is used and training is performed on the full dataset. All other curriculum parameters are ignored.</p></li>
+<li><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">Curriculum</span></code>: A curriculum is used to train the model. New samples are introduced in order of increasing difficulty.</p></li>
+<li><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">AntiCurriculum</span></code>: An anti-curriculum is used to train the model. New samples are introduced in order of decreasing difficulty.</p></li>
+</ul>
+<p><code class="xref py py-attr docutils literal notranslate"><span class="pre">curriculum/sampling</span></code>: The sampling strategy of introducing new samples into the training set.
+The following strategies are available:</p>
+<ul class="simple">
+<li><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">Unbalanced</span></code>: Introduce new samples directly following the sample difficulty ordering provided by the
+<a class="reference internal" href="../modules/scoring.html#scoring-functions"><span class="std std-ref">scoring function</span></a>.</p></li>
+<li><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">Balanced</span></code>: Introduce new samples in a class-balanced manner. New samples are introduced in a way
+that the class distribution of the training set remains balanced as long as possible, conceptually applying the difficulty ordering
+to each class separately.</p></li>
+<li><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">Original</span></code>: Introduce new samples with the same distribution as the original dataset. This is equivalent to
+introducing new samples in a class-balanced manner, but with the class distribution of the original dataset.</p></li>
+</ul>
+</li>
+<li><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">curriculum/scoring</span></code>: The ID of an already computed <a class="reference internal" href="../modules/scoring.html#scoring-functions"><span class="std std-ref">scoring function</span></a> using the
+<a class="reference internal" href="#main-configuration-scoring"><span class="std std-ref">curriculum scoring min configuration</span></a> file.</p></li>
+<li><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">curriculum/pacing</span></code>: The ID of a <a class="reference internal" href="../modules/pacing.html#pacing-functions"><span class="std std-ref">pacing function</span></a>.</p></li>
+<li><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">curriculum.pacing.initial_size</span></code>: The fraction of the dataset to be used in the first iteration.
+The remaining fraction is gradually introduced in subsequent iterations.</p></li>
+<li><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">curriculum.pacing.final_iteration</span></code>: The fraction of iterations until the full dataset is used for training.</p></li>
+</ul>
+<p>For each parameter, one or more values can be specified to sweep over different configurations.</p>
+<p>If any of <code class="xref py py-attr docutils literal notranslate"><span class="pre">curriculum</span></code>, <code class="xref py py-attr docutils literal notranslate"><span class="pre">curriculum/sampling</span></code>, <code class="xref py py-attr docutils literal notranslate"><span class="pre">curriculum/scoring</span></code>, or <code class="xref py py-attr docutils literal notranslate"><span class="pre">curriculum/pacing</span></code>
+are set to <cite>None</cite>, the run is filtered out and not executed.</p>
+</section>
+<section id="curriculum-scoring">
+<span id="main-configuration-scoring"></span><h3>Curriculum Scoring<a class="headerlink" href="#curriculum-scoring" title="Link to this heading">#</a></h3>
+<p>The main entry point for curriculum scoring is defined in the <code class="file docutils literal notranslate"><span class="pre">conf/curriculum.yaml</span></code> file.</p>
+<div class="literal-block-wrapper docutils container" id="default-curriculum">
+<div class='code-block-caption'><span class='caption-text'>conf/curriculum.yaml</span><a class='headerlink' href='#default-curriculum' title='Link to this code'>#</a></div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="nt">defaults</span><span class="p">:</span>
+<span class="linenos"> 2</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">_aucurriculum_score_</span>
+<span class="linenos"> 3</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">_self_</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="nt">results_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">results</span>
+<span class="linenos"> 6</span><span class="nt">experiment_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="nt">hydra</span><span class="p">:</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="nt">sweeper</span><span class="p">:</span>
+<span class="linenos">10</span><span class="w">    </span><span class="nt">params</span><span class="p">:</span>
+<span class="linenos">11</span><span class="w">      </span><span class="nt">curriculum/scoring</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">None</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="nt">correlation</span><span class="p">:</span>
+<span class="linenos">14</span><span class="w">  </span><span class="nt">correlation_matrix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">all</span>
+</pre></div>
+</div>
+</div><p>The following parameters are defined (alongside common attributes such as the <code class="xref py py-attr docutils literal notranslate"><span class="pre">results_dir</span></code> or <code class="xref py py-attr docutils literal notranslate"><span class="pre">experiment_id</span></code>):</p>
+<ul class="simple">
+<li><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">curriculum/scoring</span></code> (under <code class="xref py py-attr docutils literal notranslate"><span class="pre">hypdra/sweeper/params</span></code>): The <a class="reference internal" href="../modules/scoring.html#scoring-functions"><span class="std std-ref">scoring function</span></a> ID to be calculated.</p></li>
+<li><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">correlation</span></code>: A mapping of matrix names and list of scoring function IDs to calculate the correlation between scoring functions.
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">all</span></code> serves as a placeholder to include all scoring functions in the correlation matrix.</p></li>
+</ul>
+<p>Some parameters of the main configuration file are outsourced to the <a class="reference internal" href="#aucurriculum-defaults-train"><span class="std std-ref">_aucurriculum_train_.yaml defaults</span></a>
+and <a class="reference internal" href="#aucurriculum-defaults-score"><span class="std std-ref">_aucurriculum_score_.yaml defaults</span></a>
+files in order to simplify the configurations.</p>
+<p>For more information on configuring Hydra, see the <a class="reference external" href="https://hydra.cc/docs/patterns/configuring_experiments/">Hydra documentation</a>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Analogous to <a class="reference external" href="https://autrainer.github.io/autrainer/usage/hydra_configurations.html#main-configuration">autrainer configurations</a>,
+different files can be used as the main entry point for training and scoring experiments using
+the <code class="xref py py-attr docutils literal notranslate"><span class="pre">-cn/--config-name</span></code> argument for the <a class="reference internal" href="cli_reference.html#cli-training"><span class="std std-ref">aucurriculum train</span></a> CLI command:</p>
+<div class="highlight-aucurriculum notranslate"><div class="highlight"><pre><span></span><span class="nb">aucurriculum</span> <span class="k">train</span> <span class="o">-cn</span> some_other_config
+</pre></div>
+</div>
+<p>Alternatively, use the <code class="xref py py-attr docutils literal notranslate"><span class="pre">config_name</span></code> parameter for the <a class="reference internal" href="cli_wrapper.html#aucurriculum.cli.train" title="aucurriculum.cli.train"><code class="xref py py-meth docutils literal notranslate"><span class="pre">train()</span></code></a> CLI wrapper function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">aucurriculum</span><span class="o">.</span><span class="n">cli</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">config_name</span><span class="o">=</span><span class="s2">&quot;some_other_config&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For more information on command line flags, see
+<a class="reference external" href="https://hydra.cc/docs/advanced/hydra-command-line-flags/">Hydra’s command line flags documentation</a>.</p>
+</div>
+</section>
+</section>
+<section id="configuration-directories">
+<span id="id3"></span><h2>Configuration Directories<a class="headerlink" href="#configuration-directories" title="Link to this heading">#</a></h2>
+<p>In addition to the
+<a class="reference external" href="https://autrainer.github.io/autrainer/usage/hydra_configurations.html#configuration-directories">autrainer configuration directories</a>,
+the following configuration subdirectories are available:</p>
+<ul class="simple">
+<li><p><code class="file docutils literal notranslate"><span class="pre">conf/curriculum/</span></code></p></li>
+<li><p><code class="file docutils literal notranslate"><span class="pre">conf/curriculum/sampling/</span></code></p></li>
+<li><p><code class="file docutils literal notranslate"><span class="pre">conf/curriculum/scoring/</span></code></p></li>
+<li><p><code class="file docutils literal notranslate"><span class="pre">conf/curriculum/pacing/</span></code></p></li>
+</ul>
+</section>
+<section id="configurations">
+<span id="optional-defaults-list"></span><span id="defaults-list"></span><span id="interpolation-syntax"></span><span id="shorthand-syntax"></span><span id="creating-configurations"></span><h2>Configurations<a class="headerlink" href="#configurations" title="Link to this heading">#</a></h2>
+<p>Analogous to <cite>autrainer</cite>, <cite>aucurriculum</cite> provides default configurations for scoring functions, pacing functions, etc. that can be
+used out of the box without creating custom configurations.</p>
+<p>For more information on creating, discovering, and using configurations, or special syntaxes and overriding defaults, refer to the
+<a class="reference external" href="https://autrainer.github.io/autrainer/usage/hydra_configurations.html#creating-configurations">autrainer configuration creation</a> documentation.</p>
+</section>
+<section id="aucurriculum-defaults">
+<span id="id4"></span><h2>aucurriculum Defaults<a class="headerlink" href="#aucurriculum-defaults" title="Link to this heading">#</a></h2>
+<p>Both the <code class="file docutils literal notranslate"><span class="pre">_aucurriculum_train_.yaml</span></code> and <code class="file docutils literal notranslate"><span class="pre">_aucurriculum_score_.yaml</span></code> files contain further default configurations
+to simplify the <a class="reference internal" href="#main-configuration"><span class="std std-ref">main configuration</span></a> files.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Any global default parameter can be overridden in the <a class="reference internal" href="#main-configuration"><span class="std std-ref">main configuration</span></a> file by redefining it.</p>
+</div>
+<div class="literal-block-wrapper docutils container" id="default-_aucurriculum_train_">
+<span id="aucurriculum-defaults-train"></span><div class='code-block-caption'><span class='caption-text'>conf/_aucurriculum_train_.yaml</span><a class='headerlink' href='#default-_aucurriculum_train_' title='Link to this code'>#</a></div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="nt">defaults</span><span class="p">:</span>
+<span class="linenos"> 2</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">_self_</span>
+<span class="linenos"> 3</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">dataset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">???</span>
+<span class="linenos"> 4</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">???</span>
+<span class="linenos"> 5</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">optimizer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">???</span>
+<span class="linenos"> 6</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">scheduler</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">None</span>
+<span class="linenos"> 7</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">augmentation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">None</span>
+<span class="linenos"> 8</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">curriculum</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">None</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">plotting</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Default</span>
+<span class="linenos">10</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">override hydra/sweeper</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aucurriculum_train_sweeper</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="nt">training_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">epoch</span>
+<span class="linenos">13</span><span class="nt">eval_frequency</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="linenos">14</span><span class="nt">save_frequency</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${eval_frequency}</span>
+<span class="linenos">15</span><span class="nt">inference_batch_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${batch_size}</span>
+<span class="linenos">16</span><span class="nt">device</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cuda:0</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span><span class="nt">progress_bar</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="linenos">19</span><span class="nt">continue_training</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="linenos">20</span><span class="nt">remove_continued_runs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="linenos">21</span><span class="nt">save_train_outputs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="linenos">22</span><span class="nt">save_dev_outputs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="linenos">23</span><span class="nt">save_test_outputs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span><span class="nt">hydra</span><span class="p">:</span>
+<span class="linenos">26</span><span class="w">  </span><span class="nt">output_subdir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
+<span class="linenos">27</span><span class="w">  </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MULTIRUN</span>
+<span class="linenos">28</span><span class="w">  </span><span class="nt">sweep</span><span class="p">:</span>
+<span class="linenos">29</span><span class="w">    </span><span class="nt">dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${results_dir}/${experiment_id}/training/</span>
+<span class="linenos">30</span><span class="w">    </span><span class="nt">subdir</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;\</span>
+<span class="linenos">31</span><span class="w">      </span><span class="s">${dataset.id}_\</span>
+<span class="linenos">32</span><span class="w">      </span><span class="s">${model.id}_\</span>
+<span class="linenos">33</span><span class="w">      </span><span class="s">${optimizer.id}_\</span>
+<span class="linenos">34</span><span class="w">      </span><span class="s">${learning_rate}_\</span>
+<span class="linenos">35</span><span class="w">      </span><span class="s">${batch_size}_\</span>
+<span class="linenos">36</span><span class="w">      </span><span class="s">${training_type}_\</span>
+<span class="linenos">37</span><span class="w">      </span><span class="s">${iterations}_\</span>
+<span class="linenos">38</span><span class="w">      </span><span class="s">${scheduler.id}_\</span>
+<span class="linenos">39</span><span class="w">      </span><span class="s">${augmentation.id}_\</span>
+<span class="linenos">40</span><span class="w">      </span><span class="s">${curriculum.short}_\</span>
+<span class="linenos">41</span><span class="w">      </span><span class="s">${curriculum.sampling.short}_\</span>
+<span class="linenos">42</span><span class="w">      </span><span class="s">${curriculum.scoring.id}_\</span>
+<span class="linenos">43</span><span class="w">      </span><span class="s">${curriculum.pacing.id}_\</span>
+<span class="linenos">44</span><span class="w">      </span><span class="s">${curriculum.pacing.initial_size}_\</span>
+<span class="linenos">45</span><span class="w">      </span><span class="s">${curriculum.pacing.final_iteration}_\</span>
+<span class="linenos">46</span><span class="w">      </span><span class="s">${seed}&quot;</span>
+</pre></div>
+</div>
+</div><div class="literal-block-wrapper docutils container" id="default-_aucurriculum_score_">
+<span id="aucurriculum-defaults-score"></span><div class='code-block-caption'><span class='caption-text'>conf/_aucurriculum_score_.yaml</span><a class='headerlink' href='#default-_aucurriculum_score_' title='Link to this code'>#</a></div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="nt">defaults</span><span class="p">:</span>
+<span class="linenos"> 2</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">_self_</span>
+<span class="linenos"> 3</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">curriculum/scoring</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">???</span>
+<span class="linenos"> 4</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">plotting</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Default</span>
+<span class="linenos"> 5</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">override hydra/sweeper</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aucurriculum_score_sweeper</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="nt">batch_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">32</span>
+<span class="linenos"> 8</span><span class="nt">progress_bar</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="linenos"> 9</span><span class="nt">device</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cuda:0</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="nt">hydra</span><span class="p">:</span>
+<span class="linenos">12</span><span class="w">  </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MULTIRUN</span>
+<span class="linenos">13</span><span class="w">  </span><span class="nt">sweep</span><span class="p">:</span>
+<span class="linenos">14</span><span class="w">    </span><span class="nt">dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${results_dir}/${experiment_id}/curriculum/</span>
+<span class="linenos">15</span><span class="w">    </span><span class="nt">subdir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${curriculum.scoring.type}</span>
+</pre></div>
+</div>
+</div></section>
+<section id="hydra-plugins">
+<span id="id5"></span><h2>Hydra Plugins<a class="headerlink" href="#hydra-plugins" title="Link to this heading">#</a></h2>
+<p>By default, <cite>aucurriculum</cite> uses the <a class="reference external" href="https://github.com/autrainer/hydra-filter-sweeper">hydra-filter-sweeper</a>
+plugin to sweep over hyperparameter configurations which are defined in the <a class="reference internal" href="#aucurriculum-defaults"><span class="std std-ref">aucurriculum defaults</span></a>
+and implemented in the <a class="reference internal" href="../modules/core.html#core-filters"><span class="std std-ref">core module</span></a>.
+This plugin allows to specify a list of <code class="xref py py-attr docutils literal notranslate"><span class="pre">filters</span></code> in the configuration file to filter out unwanted hyperparameter combinations.</p>
+<p>To perform more complex hyperparameter sweeps, different sweeper or launcher plugins can be used.
+For more information on plugins, refer to the
+<a class="reference external" href="https://autrainer.github.io/autrainer/usage/hydra_configurations.html#hydra-plugings">autrainer plugins</a> documentation.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Custom sweeper and launcher plugins are not yet supported for curriculum scoring.</p>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#main-configuration">Main Configuration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#curriculum-training">Curriculum Training</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#curriculum-scoring">Curriculum Scoring</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration-directories">Configuration Directories</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configurations">Configurations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum-defaults">aucurriculum Defaults</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hydra-plugins">Hydra Plugins</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024 (MIT) Simon Rampp, Manuel Milling, Andreas Triantafyllopoulos, Björn W. Schuller.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

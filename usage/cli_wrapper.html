@@ -1,0 +1,663 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>CLI Wrapper &#8212; aucurriculum — A Curriculum Learning Toolkit for Deep Learning Tasks built on top of autrainer.</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/theme.css?v=93fba4f5" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'usage/cli_wrapper';</script>
+    <script src="../_static/external_links.js?v=919ee35f"></script>
+    <script src="../_static/highlight_cli.js?v=d9429fbe"></script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Hydra Configurations" href="hydra_configurations.html" />
+    <link rel="prev" title="CLI Reference" href="cli_reference.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo_light.webp" class="logo__image only-light" alt="aucurriculum — A Curriculum Learning Toolkit for Deep Learning Tasks built on top of autrainer."/>
+    <script>document.write(`<img src="../_static/logo_dark.webp" class="logo__image only-dark" alt="aucurriculum — A Curriculum Learning Toolkit for Deep Learning Tasks built on top of autrainer."/>`);</script>
+  
+  
+    <p class="title logo__title">aucurriculum</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/autrainer/aucurriculum" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/autrainer/aucurriculum" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Usage</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli_reference.html">CLI Reference</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">CLI Wrapper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydra_configurations.html">Hydra Configurations</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/scoring.html">Scoring Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/pacing.html">Pacing Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/core.html">Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/postprocessing.html">Postprocessing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../development/reproducibility_guide.html">Reproducibility Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/citing.html">Citing <cite>aucurriculum</cite></a></li>
+</ul>
+</div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">CLI Wrapper</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="cli-wrapper">
+<span id="id1"></span><h1>CLI Wrapper<a class="headerlink" href="#cli-wrapper" title="Link to this heading">#</a></h1>
+<p><cite>aucurriculum</cite> provides an <code class="xref py py-attr docutils literal notranslate"><span class="pre">aucurriculum.cli</span></code> CLI wrapper to programmatically manage the entire curriculum learning-based training process including
+<a class="reference internal" href="#cli-wrapper-configuration-management"><span class="std std-ref">configuration management</span></a>,
+<a class="reference internal" href="#cli-wrapper-preprocessing"><span class="std std-ref">data preprocessing</span></a>,
+<a class="reference internal" href="#cli-wrapper-training"><span class="std std-ref">model training</span></a>,
+<a class="reference internal" href="#cli-wrapper-inference"><span class="std std-ref">inference</span></a>,
+<a class="reference internal" href="#cli-wrapper-postprocessing"><span class="std std-ref">postprocessing</span></a>,
+and <a class="reference internal" href="#cli-wrapper-curriculum"><span class="std std-ref">curriculum</span></a> to obtain sample difficulty scores.</p>
+<p>Wrapper functions are useful for integrating <cite>aucurriculum</cite> into custom scripts, jupyter notebooks, google colab notebooks, and other applications.</p>
+<p>In addition to the CLI wrapper functions, <cite>aucurriculum</cite> provides a <a class="reference internal" href="cli_reference.html#cli-reference"><span class="std std-ref">CLI</span></a> to manage configurations, data, training, inference,
+and postprocessing from the command line with the same functionality as the CLI wrapper.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Both the CLI and the Python CLI wrapper serve as a curriculum learning extension to <cite>autrainer</cite>.
+For more information on the <cite>autrainer</cite> CLI wrapper, refer to the
+<a class="reference external" href="https://autrainer.github.io/autrainer/usage/cli_wrapper.html">autrainer CLI wrapper</a>.</p>
+</div>
+<section id="aucurriculum">
+<span id="cli-wrapper-aucurriculum"></span><h2>aucurriculum<a class="headerlink" href="#aucurriculum" title="Link to this heading">#</a></h2>
+<div class="highlight-aucli notranslate"><div class="highlight"><pre><span></span>usage: <span class="nb">aucurriculum</span> [<span class="o">-h</span>] [<span class="o">-v</span>] &lt;command&gt; ...
+</pre></div>
+</div>
+<p><p>A Curriculum Learning Toolkit for Deep Learning Tasks built on top of autrainer.</p>
+</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">aucurriculum</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">v</span><span class="p">]</span> <span class="o">&lt;</span><span class="n">command</span><span class="o">&gt;</span> <span class="o">...</span>
+</pre></div>
+</div>
+<section id="positional-arguments">
+<h3>Positional Arguments<a class="headerlink" href="#positional-arguments" title="Link to this heading">#</a></h3>
+<dl class="option-list">
+<dt><kbd>&lt;command&gt;</kbd></dt>
+<dd><p>Possible choices: create, list, show, fetch, preprocess, train, inference, postprocess, rm-failed, rm-states, group, curriculum</p>
+</dd>
+</dl>
+</section>
+<section id="named-arguments">
+<h3>Named Arguments<a class="headerlink" href="#named-arguments" title="Link to this heading">#</a></h3>
+<dl class="option-list">
+<dt><kbd>-v, --version</kbd></dt>
+<dd><p>show program’s version number and exit</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="configuration-management">
+<span id="cli-wrapper-configuration-management"></span><h2>Configuration Management<a class="headerlink" href="#configuration-management" title="Link to this heading">#</a></h2>
+<p>To manage configurations, <a class="reference internal" href="#cli-wrapper-aucurriculum-create"><span class="std std-ref">aucurriculum create</span></a>, <a class="reference internal" href="#cli-wrapper-aucurriculum-list"><span class="std std-ref">aucurriculum list</span></a>,
+and <a class="reference internal" href="#cli-wrapper-aucurriculum-show"><span class="std std-ref">aucurriculum show</span></a> allow for the creation of the project structure and the discovery
+as well as saving of default configurations provided by <cite>aucurriculum</cite> and <cite>autrainer</cite>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Default configurations can be discovered both through the <a class="reference internal" href="cli_reference.html#cli-reference"><span class="std std-ref">CLI</span></a>,
+the <a class="reference internal" href="#cli-wrapper"><span class="std std-ref">CLI wrapper</span></a>, and the respective module documentation.</p>
+</div>
+<dl class="py function" id="cli-wrapper-aucurriculum-create">
+<dt class="sig sig-object py" id="aucurriculum.cli.create">
+<span class="sig-prename descclassname"><span class="pre">aucurriculum.cli.</span></span><span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directories</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">empty</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/core/scripts/create_script.html#create"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.cli.create" title="Link to this definition">#</a></dt>
+<dd><p>Create a new curriculum project with default configurations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>directories</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]]</span>) – Configuration directories to create. One or more of:
+<code class="xref py py-const docutils literal notranslate"><span class="pre">CONFIG_DIRS</span></code>
+and <a class="reference internal" href="../modules/core.html#aucurriculum.core.constants.CurriculumConstants.CONFIG_DIRS" title="aucurriculum.core.constants.CurriculumConstants.CONFIG_DIRS"><code class="xref py py-const docutils literal notranslate"><span class="pre">CONFIG_DIRS</span></code></a>.
+Defaults to None.</p></li>
+<li><p><strong>empty</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Create an empty project without any configuration directory.
+Defaults to False.</p></li>
+<li><p><strong>all</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Create a project with all configuration directories.
+Defaults to False.</p></li>
+<li><p><strong>force</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Force overwrite if the configuration directory already exists.
+Defaults to False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function" id="cli-wrapper-aucurriculum-list">
+<dt class="sig sig-object py" id="aucurriculum.cli.list">
+<span class="sig-prename descclassname"><span class="pre">aucurriculum.cli.</span></span><span class="sig-name descname"><span class="pre">list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">global_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pattern</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'*'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aucurriculum.cli.list" title="Link to this definition">#</a></dt>
+<dd><p>List local and global configurations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>directory</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The directory to list configurations from. Choose from:
+<code class="xref py py-const docutils literal notranslate"><span class="pre">CONFIG_DIRS</span></code>
+and <a class="reference internal" href="../modules/core.html#aucurriculum.core.constants.CurriculumConstants.CONFIG_DIRS" title="aucurriculum.core.constants.CurriculumConstants.CONFIG_DIRS"><code class="xref py py-const docutils literal notranslate"><span class="pre">CONFIG_DIRS</span></code></a>.</p></li>
+<li><p><strong>local_only</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – List local configurations only. Defaults to False.</p></li>
+<li><p><strong>global_only</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – List global configurations only. Defaults to False.</p></li>
+<li><p><strong>pattern</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Glob pattern to filter configurations. Defaults to “*”.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function" id="cli-wrapper-aucurriculum-show">
+<dt class="sig sig-object py" id="aucurriculum.cli.show">
+<span class="sig-prename descclassname"><span class="pre">aucurriculum.cli.</span></span><span class="sig-name descname"><span class="pre">show</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/core/scripts/show_script.html#show"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.cli.show" title="Link to this definition">#</a></dt>
+<dd><p>Show and save a global configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>directory</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The directory to list configurations from. Choose from:
+<code class="xref py py-const docutils literal notranslate"><span class="pre">CONFIG_FOLDERS</span></code>
+and <code class="xref py py-const docutils literal notranslate"><span class="pre">CONFIG_FOLDERS</span></code>.</p></li>
+<li><p><strong>config</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The global configuration to show. Configurations can be
+discovered using the ‘autrainer list’ command.</p></li>
+<li><p><strong>save</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Save the global configuration to the local conf directory.
+Defaults to False.</p></li>
+<li><p><strong>force</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Force overwrite local configuration if it exists in combination
+with save=True. Defaults to False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="preprocessing">
+<span id="cli-wrapper-preprocessing"></span><h2>Preprocessing<a class="headerlink" href="#preprocessing" title="Link to this heading">#</a></h2>
+<p>To avoid race conditions when using <a class="reference external" href="https://autrainer.github.io/autrainer/usage/hydra_configurations.html#launcher-plugins">hydra_launcher_plugins</a>
+that may run multiple training jobs in parallel,
+<a class="reference internal" href="#cli-wrapper-aucurriculum-fetch"><span class="std std-ref">aucurriculum fetch</span></a> and <a class="reference internal" href="#cli-wrapper-aucurriculum-preprocess"><span class="std std-ref">aucurriculum preprocess</span></a> allow for
+downloading and <a class="reference external" href="https://autrainer.github.io/autrainer/modules/transforms.html#preprocessing-transforms">preprocessing</a>
+of <a class="reference external" href="https://autrainer.github.io/autrainer/modules/datasets.html">datasets</a> (and pretrained model states) before training.</p>
+<p>Both commands are based on the <a class="reference internal" href="hydra_configurations.html#main-configuration"><span class="std std-ref">main configuration</span></a> file (e.g. <code class="file docutils literal notranslate"><span class="pre">conf/config.yaml</span></code>),
+such that the specified models and datasets are fetched and preprocessed accordingly.
+If a model or dataset is already fetched or preprocessed, it will be skipped.</p>
+<p id="cli-wrapper-aucurriculum-preprocess"><span id="cli-wrapper-aucurriculum-fetch"></span>For more information on fetching and preprocessing, refer to the
+<a class="reference external" href="https://autrainer.github.io/autrainer/usage/cli_wrapper.html#preprocessing">autrainer preprocessing CLI wrapper</a>.</p>
+</section>
+<section id="training">
+<span id="cli-wrapper-training"></span><h2>Training<a class="headerlink" href="#training" title="Link to this heading">#</a></h2>
+<p>Training is managed by <a class="reference internal" href="#cli-wrapper-aucurriculum-train"><span class="std std-ref">aucurriculum train</span></a>, which starts the training process
+based on the <a class="reference internal" href="hydra_configurations.html#main-configuration"><span class="std std-ref">main configuration</span></a> file (e.g. <code class="file docutils literal notranslate"><span class="pre">conf/config.yaml</span></code>).</p>
+<dl class="py function" id="cli-wrapper-aucurriculum-train">
+<dt class="sig sig-object py" id="aucurriculum.cli.train">
+<span class="sig-prename descclassname"><span class="pre">aucurriculum.cli.</span></span><span class="sig-name descname"><span class="pre">train</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">override_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'config'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/core/scripts/train_script.html#train"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.cli.train" title="Link to this definition">#</a></dt>
+<dd><p>Launch a training configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>override_kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>]</span>) – Additional Hydra override arguments to pass to the
+train script.</p></li>
+<li><p><strong>config_name</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The name of the config (usually the file name without the
+.yaml extension). Defaults to “config”.</p></li>
+<li><p><strong>config_path</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span>) – The config path, a directory where Hydra will search for
+config files. If config_path is None no directory is added to the
+search path. Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="inference">
+<span id="cli-wrapper-aucurriculum-inference"></span><span id="cli-wrapper-inference"></span><h2>Inference<a class="headerlink" href="#inference" title="Link to this heading">#</a></h2>
+<p><a class="reference internal" href="#cli-wrapper-aucurriculum-inference"><span class="std std-ref">aucurriculum inference</span></a> allows for the (sliding window) inference of audio data using a trained model.
+For more information on the inference process, refer to the
+<a class="reference external" href="https://autrainer.github.io/autrainer/usage/cli_wrapper.html#inference">autrainer inference CLI wrapper</a>.</p>
+</section>
+<section id="postprocessing">
+<span id="cli-wrapper-postprocessing"></span><h2>Postprocessing<a class="headerlink" href="#postprocessing" title="Link to this heading">#</a></h2>
+<p>Postprocessing allows for the summarization, visualization, and aggregation of the training results using
+<a class="reference internal" href="#cli-wrapper-aucurriculum-postprocess"><span class="std std-ref">aucurriculum postprocess</span></a>.
+Several cleanup utilities are provided by <a class="reference internal" href="#cli-wrapper-aucurriculum-rm-failed"><span class="std std-ref">aucurriculum rm-failed</span></a>
+and <a class="reference internal" href="#cli-wrapper-aucurriculum-rm-states"><span class="std std-ref">aucurriculum rm-states</span></a>.
+Manual grouping of the training results can be done using <a class="reference internal" href="#cli-wrapper-aucurriculum-group"><span class="std std-ref">aucurriculum group</span></a>.</p>
+<dl class="py function" id="cli-wrapper-aucurriculum-postprocess">
+<dt class="sig sig-object py" id="aucurriculum.cli.postprocess">
+<span class="sig-prename descclassname"><span class="pre">aucurriculum.cli.</span></span><span class="sig-name descname"><span class="pre">postprocess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">experiment_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_runs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aggregate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/core/scripts/postprocess_script.html#postprocess"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.cli.postprocess" title="Link to this definition">#</a></dt>
+<dd><p>Postprocess grid search results.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>results_dir</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Path to grid search results directory.</p></li>
+<li><p><strong>experiment_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – ID of experiment to postprocess.</p></li>
+<li><p><strong>max_runs</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]</span>) – Maximum number of best runs to plot. Defaults to None.</p></li>
+<li><p><strong>aggregate</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]]]</span>) – Configurations to aggregate. One or more of:
+<code class="xref py py-const docutils literal notranslate"><span class="pre">VALID_AGGREGATIONS</span></code>.
+Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<p id="cli-wrapper-aucurriculum-group"><span id="cli-wrapper-aucurriculum-rm-states"></span><span id="cli-wrapper-aucurriculum-rm-failed"></span>For more information on the cleanup utilities and manual grouping, refer to the
+<a class="reference external" href="https://autrainer.github.io/autrainer/usage/cli_wrapper.html#postprocessing">autrainer postprocessing CLI wrapper</a>.</p>
+<p id="cli-wrapper-curriculum">Curriculum Scoring</p>
+<p>Curriculum scoring is managed by <a class="reference internal" href="#cli-wrapper-aucurriculum-curriculum"><span class="std std-ref">aucurriculum curriculum</span></a>, which allows for the calculation of
+sample difficulty scores based on the training results and <a class="reference internal" href="../modules/scoring.html#scoring-functions"><span class="std std-ref">scoring functions</span></a>.</p>
+<dl class="py function" id="cli-wrapper-aucurriculum-curriculum">
+<dt class="sig sig-object py" id="aucurriculum.cli.curriculum">
+<span class="sig-prename descclassname"><span class="pre">aucurriculum.cli.</span></span><span class="sig-name descname"><span class="pre">curriculum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">override_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'curriculum'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aucurriculum/core/scripts/curriculum_script.html#curriculum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aucurriculum.cli.curriculum" title="Link to this definition">#</a></dt>
+<dd><p>Launch a curriculum scoring function configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>override_kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>]</span>) – Additional Hydra override arguments to pass to the
+train script.</p></li>
+<li><p><strong>config_name</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The name of the config (usually the file name without the
+.yaml extension). Defaults to “curriculum”.</p></li>
+<li><p><strong>config_path</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span>) – The config path, a directory where Hydra will search for
+config files. If config_path is None no directory is added to the
+search path. Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum">aucurriculum</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#positional-arguments">Positional Arguments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#named-arguments">Named Arguments</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration-management">Configuration Management</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.cli.create"><code class="docutils literal notranslate"><span class="pre">create()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.cli.list"><code class="docutils literal notranslate"><span class="pre">list()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.cli.show"><code class="docutils literal notranslate"><span class="pre">show()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing">Preprocessing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training">Training</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.cli.train"><code class="docutils literal notranslate"><span class="pre">train()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inference">Inference</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#postprocessing">Postprocessing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.cli.postprocess"><code class="docutils literal notranslate"><span class="pre">postprocess()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aucurriculum.cli.curriculum"><code class="docutils literal notranslate"><span class="pre">curriculum()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024 (MIT) Simon Rampp, Manuel Milling, Andreas Triantafyllopoulos, Björn W. Schuller.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>
