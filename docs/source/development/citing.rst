@@ -6,7 +6,20 @@ If you use `aucurriculum` in your research, please cite our work to acknowledge 
 Publication
 -----------
 
-The formal publication describing `aucurriculum` will be available soon.
+The `aucurriculum` toolkit is described in the following `publication <https://doi.org/10.48550/arXiv.2411.00973>`_:
+
+.. code-block:: bibtex
+
+   @misc{rampp2024sampledifficulty,
+     doi = {10.48550/ARXIV.2411.00973},
+     url = {https://arxiv.org/abs/2411.00973},
+     author = {Rampp,  Simon and Milling,  Manuel and Triantafyllopoulos,  Andreas and Schuller,  Bj\"{o}rn W.},
+     keywords = {Machine Learning (cs.LG),  FOS: Computer and information sciences,  FOS: Computer and information sciences},
+     title = {Does the Definition of Difficulty Matter? Scoring Functions and their Role for Curriculum Learning},
+     publisher = {arXiv},
+     year = {2024},
+     copyright = {Creative Commons Attribution Non Commercial Share Alike 4.0 International}
+   }
 
 
 Authors

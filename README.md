@@ -32,3 +32,20 @@ To get started using _aucurriculum_, the [quickstart guide](https://autrainer.gi
 and [tutorials](https://autrainer.github.io/aucurriculum/usage/tutorials.html) provide examples for implementing custom scoring and pacing functions including their configurations.
 
 For a complete list of available CLI commands, refer to the [CLI reference](https://autrainer.github.io/aucurriculum/usage/cli_reference.html) or the [CLI wrapper](https://autrainer.github.io/aucurriculum/usage/cli_wrapper.html).
+
+## Citation
+
+If you use _aucurriculum_ in your research, please consider citing the following [paper](https://doi.org/10.48550/arXiv.2411.00973):
+
+```bibtex
+@misc{rampp2024sampledifficulty,
+  doi = {10.48550/ARXIV.2411.00973},
+  url = {https://arxiv.org/abs/2411.00973},
+  author = {Rampp,  Simon and Milling,  Manuel and Triantafyllopoulos,  Andreas and Schuller,  Bj\"{o}rn W.},
+  keywords = {Machine Learning (cs.LG),  FOS: Computer and information sciences,  FOS: Computer and information sciences},
+  title = {Does the Definition of Difficulty Matter? Scoring Functions and their Role for Curriculum Learning},
+  publisher = {arXiv},
+  year = {2024},
+  copyright = {Creative Commons Attribution Non Commercial Share Alike 4.0 International}
+}
+```
