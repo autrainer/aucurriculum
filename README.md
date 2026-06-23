@@ -35,7 +35,7 @@ For a complete list of available CLI commands, refer to the [CLI reference](http
 
 ## Citation
 
-If you use _aucurriculum_ in your research, please consider citing the following [paper](https://doi.org/10.48550/arXiv.2411.00973):
+If you use _aucurriculum_ in your research, please consider citing the following [paper](https://doi.org/10.48550/arXiv.2411.00973), which was accepted at IJCNN 2026:
 
 ```bibtex
 @misc{rampp2024sampledifficulty,
