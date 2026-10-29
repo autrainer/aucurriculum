@@ -35,17 +35,17 @@ For a complete list of available CLI commands, refer to the [CLI reference](http
 
 ## Citation
 
-If you use _aucurriculum_ in your research, please consider citing the following [paper](https://doi.org/10.48550/arXiv.2411.00973), which was accepted at IJCNN 2026:
+If you use _aucurriculum_ in your research, please consider citing the following [paper](https://ieeexplore.ieee.org/document/11729720):
 
 ```bibtex
-@misc{rampp2024sampledifficulty,
-  doi = {10.48550/ARXIV.2411.00973},
-  url = {https://arxiv.org/abs/2411.00973},
-  author = {Rampp,  Simon and Milling,  Manuel and Triantafyllopoulos,  Andreas and Schuller,  Bj\"{o}rn W.},
-  keywords = {Machine Learning (cs.LG),  FOS: Computer and information sciences,  FOS: Computer and information sciences},
-  title = {Does the Definition of Difficulty Matter? Scoring Functions and their Role for Curriculum Learning},
-  publisher = {arXiv},
-  year = {2024},
-  copyright = {Creative Commons Attribution Non Commercial Share Alike 4.0 International}
+@inproceedings{rampp2026difficulty,
+  title         = {Does the Definition of Difficulty Matter? Scoring Functions and their Role for Curriculum Learning},
+  author        = {Rampp, Simon and Milling, Manuel and Triantafyllopoulos, Andreas and Schuller, Bj{\"o}rn W.},
+  booktitle     = {2026 International Joint Conference on Neural Networks (IJCNN)},
+  year          = {2026},
+  pages         = {1--8},
+  doi           = {10.1109/IJCNN69854.2026.11729720},
+  eprint        = {2411.00973},
+  archivePrefix = {arXiv}
 }
 ```
