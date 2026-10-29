@@ -7,13 +7,13 @@ permissions:
 
 jobs:
   pre-commit:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v3
       - uses: pre-commit/action@v3.0.1
   pytest:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: pre-commit
     steps:
       - uses: actions/checkout@v3
@@ -27,4 +27,3 @@ jobs:
         run: poetry install --all-extras
       - name: Run Tests
         run: poetry run pytest
-
