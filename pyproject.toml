@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "aucurriculum"
-version = "0.1.1"
+version = "0.1.2"
 description = "A Curriculum Learning Toolkit for Deep Learning Tasks built on top of autrainer."
 authors = [
     "Simon Rampp <simon.rampp@tum.de>",
